@@ -20,7 +20,7 @@ public class InvoiceService {
     @Autowired
     PricesRepository pricesRepository;
     public void newInvoice(Appointment appointment){
-        Invoice invoice = new Invoice(appointment.getPatient(),pricesRepository.findByDisease(appointment.getDisease()).getPrice(),"Not paid");
+        Invoice invoice = new Invoice(appointment.getPatient(),200,"Not paid");
         invoiceRepository.save(invoice);
         new ResponseEntity<>("Invoice added", HttpStatus.OK);
     }

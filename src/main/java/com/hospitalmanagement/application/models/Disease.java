@@ -23,17 +23,17 @@ public class Disease {
         this.name = name;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public int getPrice() {
+        return price;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Id
     @GeneratedValue
     Long id;
     private String name;
-    boolean isAvailable;
+    private int price;
 }

@@ -25,9 +25,10 @@ public class SecurityConfiguration {
     { http
             .csrf().disable()
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth.requestMatchers("/public/**", "/admin/**").permitAll() .requestMatchers("/appointments/**","/disease/**","/doctor/**","/invoice/**").hasAuthority("ADMIN")) ;
+            .authorizeHttpRequests(auth -> auth.requestMatchers("/public/**", "/admin/**","/doctor/**","/nurse/**").permitAll() .requestMatchers("/appointments/**","/disease/**","/invoice/**").hasAuthority("ADMIN")) ;
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build(); }
+        return http.build();
+    }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();

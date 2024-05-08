@@ -54,7 +54,8 @@ public class AdminService{
             }
             Roles role = roleRepository.findByRoleName(RoleName.valueOf (myrole));
             user.setUserRole(registerDto.getUserRole());
-            user.setRoles(Collections.singletonList(role)); adminRepository.save(user);
+            user.setRoles(Collections.singletonList(role));
+            adminRepository.save(user);
             String token = jwtUtilities.generateToken(registerDto.getEmail( ), Collections.singletonList(role.getRoleName()));
             return new ResponseEntity<>(new BearerToken(token , "Bearer "),HttpStatus.OK);
         }
