@@ -1,12 +1,10 @@
 package com.hospitalmanagement.application.filter;
 
-import com.hospitalmanagement.application.services.JwtUtilities;
+import com.hospitalmanagement.application.departments.staff_management.JwtUtilities;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,9 +12,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.hospitalmanagement.application.services.CustomerDetailsService;
+import com.hospitalmanagement.application.departments.staff_management.CustomerDetailsService;
 
 import java.io.IOException;
 @Slf4j
