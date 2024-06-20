@@ -1,6 +1,7 @@
 package com.hospitalmanagement.application.departments.appointment_management;
 
 import com.hospitalmanagement.application.requesthandler.PutRequestAppointment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +11,10 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("appointments")
 public class AppointmentsController {
-    private final AppointmentService appointmentService;
-    public AppointmentsController(AppointmentService appointmentService){
-        this.appointmentService = appointmentService;
-    }
+    @Autowired
+    private AppointmentService appointmentService;
+
+
     @GetMapping("/")
     public List<Appointment> appointments(){
         return appointmentService.getAllAppointments();
@@ -23,12 +24,14 @@ public class AppointmentsController {
         return appointmentService.addNewAppointment(appointment);
     }
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Object> editAppointment(@PathVariable Long id, @RequestBody PutRequestAppointment putRequestAppointment){
-        return appointmentService.updateAppointment(id,putRequestAppointment.getNewDate(),putRequestAppointment.getNewDoctor());
-    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteAppointment(@PathVariable Long id){
         return appointmentService.deleteAppointment(id);
+    }
+    @GetMapping("/total")
+    public long total(){
+      return appointmentService.getTotal();
     }
 
 }

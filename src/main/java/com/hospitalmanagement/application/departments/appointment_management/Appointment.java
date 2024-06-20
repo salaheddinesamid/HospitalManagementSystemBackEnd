@@ -4,24 +4,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.sql.Time;
+import java.util.Date;
+
 @Entity
 public class Appointment {
     @Id
     @GeneratedValue
     Long id;
     String patient;
-    String location;
+    Integer age;
+    Integer fees;
+    Date date;
 
     public Long getId() {
         return id;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public void setId(Long id) {
@@ -36,31 +33,47 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public String getDate() {
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getFees() {
+        return fees;
+    }
+
+    public void setFees(Integer fees) {
+        this.fees = fees;
+    }
+
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getDoctor() {
-        return doctor;
+    public Time getTime() {
+        return time;
     }
 
-    public void setDoctor(String doctor) {
-        this.doctor = doctor;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
-    public String getDisease() {
-        return disease;
+    public String getDoctorName() {
+        return doctorName;
     }
 
-    public void setDisease(String disease) {
-        this.disease = disease;
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 
-    String date;
-    String doctor;
-    String disease;
+    Time time;
+    String doctorName;
+
 }

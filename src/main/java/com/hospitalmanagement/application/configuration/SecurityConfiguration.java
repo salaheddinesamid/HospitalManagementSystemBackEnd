@@ -25,8 +25,9 @@ public class SecurityConfiguration {
     { http
             .csrf().disable()
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth.requestMatchers("/public/**", "/admin/**","/doctor/**","/nurse/**","/invoice/**").permitAll() .requestMatchers("/appointments/**","/disease/**").hasAuthority("ADMIN")) ;
+            .authorizeHttpRequests(auth -> auth.requestMatchers("/public/**", "/admin/**","/nurse/**","/analytics/**","/v2/**").permitAll() .requestMatchers("/appointments/**","/disease/**","/doctor/**","/invoice/**").hasAuthority("ADMIN")) ;
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
     @Bean

@@ -1,5 +1,6 @@
 package com.hospitalmanagement.application.services;
 
+import com.hospitalmanagement.application.controllers.PatientController;
 import com.hospitalmanagement.application.models.Patient;
 import com.hospitalmanagement.application.repositories.PatientRepository;
 import org.apache.coyote.Response;
@@ -19,5 +20,8 @@ public class PatientService {
             patientRepository.save(patient);
             return new ResponseEntity<>("The patient has been added successfully",HttpStatus.OK);
         }
+    }
+    public long getTotalPatients(){
+        return patientRepository.count();
     }
 }

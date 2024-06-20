@@ -28,14 +28,7 @@ public class AppointmentService {
         appointmentsRepository.deleteById(id);
         return new ResponseEntity<>("Your appointment has been deleted",HttpStatus.OK);
     }
-    public ResponseEntity<Object> updateAppointment(Long id,String date, String doctor){
-        appointmentsRepository.findById(id).map(
-                appointment -> {
-                    appointment.setDoctor(doctor);
-                    appointment.setDate(date);
-                    return appointmentsRepository.save(appointment);
-                }
-        );
-        return new ResponseEntity<>("The appointment has been modified",HttpStatus.OK);
+    public long getTotal(){
+       return appointmentsRepository.count();
     }
 }

@@ -64,6 +64,7 @@ public class AdminService{
             List<String> rolesNames = new ArrayList<>();
             user.getRoles().forEach(r-> rolesNames.add(r.getRoleName()));
             String token = jwtUtilities.generateToken(user. getUsername(),rolesNames);
+            System.out.println(token);
             return new ResponseEntity<>(new BearerToken(token,"Bearer"),HttpStatus.OK);
 
     }

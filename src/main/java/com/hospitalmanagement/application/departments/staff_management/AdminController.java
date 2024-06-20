@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
-@CrossOrigin
+@CrossOrigin("http://localhost:3000/")
 public class AdminController {
     private final AdminService adminService;
     private final JwtUtilities jwtUtilities;
