@@ -1,9 +1,7 @@
 package com.hospitalmanagement.application.services;
 
-import com.hospitalmanagement.application.controllers.PatientController;
 import com.hospitalmanagement.application.models.Patient;
 import com.hospitalmanagement.application.repositories.PatientRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
