@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -70,6 +71,15 @@ public class AdminService{
     }
     public Admin getDetails(String email){
         return adminRepository.findByEmail(email).get();
+    }
+
+    public void editAdmin(String email, AdminDto adminDto){
+        Optional<Admin> admin = adminRepository.findByEmail(email);
+        Admin ad = admin.get();
+        ad.setFirstName(adminDto.firstName);
+        ad.setLastName(adminDto.lastName);
+        ad.setEmail(adminDto.email);
+        ad.setUserRole("admin");
     }
 
 }

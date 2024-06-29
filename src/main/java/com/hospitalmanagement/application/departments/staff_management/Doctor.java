@@ -12,7 +12,13 @@ public class Doctor {
     String fullName;
     int age;
     String email;
-
+    String locationAddress;
+    String specialization;
+    int yearsOfExperience;
+    String nationalId;
+    String status;
+    String gender;
+    String professionalId;
     public String getEmail() {
         return email;
     }
@@ -76,11 +82,14 @@ public class Doctor {
     public void setNationalId(String nationalId) {
         this.nationalId = nationalId;
     }
-    String locationAddress;
-    String specialization;
-    int yearsOfExperience;
-    String nationalId;
-    String status;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getStatus() {
         return status;
@@ -97,5 +106,5 @@ public class Doctor {
         this.professionalId = professionalId;
     }
 
-    String professionalId;
+
 }

@@ -31,4 +31,10 @@ public class AdminController {
         String email = jwtUtilities.extractUserName(token.substring(7));
         return adminService.getDetails(email);
     }
+
+    @PutMapping("settings/{email}")
+
+    public void editAdminDetails(@PathVariable String email, @RequestBody AdminDto adminDto){
+        adminService.editAdmin(email,adminDto);
+    }
 }

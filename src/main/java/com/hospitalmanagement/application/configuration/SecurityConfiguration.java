@@ -25,7 +25,7 @@ public class SecurityConfiguration {
     { http
             .csrf().disable()
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth.requestMatchers("/public/**", "/admin/**","/nurse/**","/analytics/**","/v2/**").permitAll() .requestMatchers("/appointments/**","/disease/**","/doctor/**","/invoice/**").hasAuthority("ADMIN")) ;
+            .authorizeHttpRequests(auth -> auth.requestMatchers("/appointments/**","/public/**", "/admin/**","/nurse/**","/analytics/**","/v2/**","/staff-management/**","/patient-management/**").permitAll() .requestMatchers("/disease/**","/doctor/**","/invoice/**").hasAuthority("ADMIN")) ;
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

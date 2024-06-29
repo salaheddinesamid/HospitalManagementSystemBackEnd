@@ -10,16 +10,20 @@ import java.util.List;
 public class Patient {
     @Id
     @GeneratedValue
-    Long id;
+    Integer Id;
     String fullName;
-    String phoneNumber;
+    String nationalId;
+    Integer Age;
+    String address;
+    String country;
+    String email;
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public Integer getId() {
+        return Id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setId(Integer id) {
+        Id = id;
     }
 
     public String getFullName() {
@@ -30,40 +34,6 @@ public class Patient {
         this.fullName = fullName;
     }
 
-    public String getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-
-    public String getLocationAddress() {
-        return locationAddress;
-    }
-
-    public void setLocationAddress(String locationAddress) {
-        this.locationAddress = locationAddress;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getNationalId() {
         return nationalId;
     }
@@ -72,20 +42,29 @@ public class Patient {
         this.nationalId = nationalId;
     }
 
-    public List<String> getDiseases() {
-        return diseases;
+    public Integer getAge() {
+        return Age;
     }
 
-    public void setDiseases(List<String> diseases) {
-        this.diseases = diseases;
+    public void setAge(Integer age) {
+        Age = age;
     }
 
+    public String getAddress() {
+        return address;
+    }
 
-    String locationAddress;
-    String nationality;
-    int age;
-    String nationalId;
-    List<String> diseases;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public String getEmail() {
         return email;
@@ -94,7 +73,5 @@ public class Patient {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    String email;
 }
 

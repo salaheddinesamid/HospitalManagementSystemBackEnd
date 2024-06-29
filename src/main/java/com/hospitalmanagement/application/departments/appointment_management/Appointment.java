@@ -13,12 +13,38 @@ public class Appointment {
     @GeneratedValue
     Long id;
     String patient;
-    Integer age;
-    Integer fees;
+    String idNumber;
+    Float totalPrice;
+    String address;
+    Time time;
     Date date;
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public Long getId() {
         return id;
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
     }
 
     public void setId(Long id) {
@@ -33,20 +59,12 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public Integer getAge() {
-        return age;
+    public Float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Integer getFees() {
-        return fees;
-    }
-
-    public void setFees(Integer fees) {
-        this.fees = fees;
+    public void setTotalPrice(Float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Date getDate() {
@@ -57,23 +75,5 @@ public class Appointment {
         this.date = date;
     }
 
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
-    }
-
-    Time time;
-    String doctorName;
 
 }
