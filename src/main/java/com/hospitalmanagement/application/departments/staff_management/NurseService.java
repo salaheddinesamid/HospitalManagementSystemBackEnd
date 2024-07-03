@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NurseService {
     @Autowired
@@ -13,5 +15,9 @@ public class NurseService {
     public ResponseEntity<Object> addNurse(Nurse nurse){
         nurseRepository.save(nurse);
         return new ResponseEntity<>("Nurse added successfully", HttpStatus.OK);
+    }
+
+    public List<Nurse> getAllNurse(){
+        return nurseRepository.findAll();
     }
 }

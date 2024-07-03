@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,9 @@ public class StaffService {
         return (ArrayList<Staff>) staffRepository.findAll();
     }
 
+    public List<Staff> getNurses(){
+        return staffRepository.findAllByRole("Nurse");
+    }
     ResponseEntity<Object> newStaff(Staff staff){
         staffRepository.save(staff);
         return new ResponseEntity<>("Staff Has been added successfully", HttpStatus.OK);
