@@ -1,14 +1,17 @@
 package com.hospitalmanagement.application.model;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Patient {
+public class Nurse {
 
     @Id
     @GeneratedValue
@@ -19,12 +22,4 @@ public class Patient {
 
     @Column(name = "last_name")
     String lastName;
-
-    @OneToOne
-    @JoinColumn(name = "contact_id")
-    ContactPatient contactPatient;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    User user;
 }

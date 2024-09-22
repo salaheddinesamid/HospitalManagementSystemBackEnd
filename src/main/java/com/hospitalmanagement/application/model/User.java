@@ -1,6 +1,5 @@
 package com.hospitalmanagement.application.model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Patient {
+public class User {
 
     @Id
     @GeneratedValue
@@ -20,11 +19,14 @@ public class Patient {
     @Column(name = "last_name")
     String lastName;
 
-    @OneToOne
-    @JoinColumn(name = "contact_id")
-    ContactPatient contactPatient;
+    @Column(name = "email")
+    String email;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @Column(name = "password")
+    String password;
+
+    @Column(name = "role")
+    String role;
+
+
 }
