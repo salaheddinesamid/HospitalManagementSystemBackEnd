@@ -19,10 +19,10 @@ public class User {
     @Column(name = "last_name")
     String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email",nullable = true)
     String email;
 
-    @Column(name = "password")
+    @Column(name = "password",nullable = true)
     String password;
 
     @Column(name = "role")

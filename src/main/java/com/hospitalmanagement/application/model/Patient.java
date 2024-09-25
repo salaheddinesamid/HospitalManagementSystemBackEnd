@@ -20,11 +20,9 @@ public class Patient {
     @Column(name = "last_name")
     String lastName;
 
-    @OneToOne
-    @JoinColumn(name = "contact_id")
-    ContactPatient contactPatient;
+    @Column(name = "national_id")
+    String nationalId;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @Column(name = "address")
+    String address;
 }
