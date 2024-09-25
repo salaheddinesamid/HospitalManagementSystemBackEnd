@@ -25,4 +25,14 @@ public class Patient {
 
     @Column(name = "address")
     String address;
+
+    public Patient(String firstName,String lastName,String nationalId,String address){
+        this.firstName  = firstName;
+        this.lastName = lastName;
+        this.nationalId = nationalId;
+        this.address = address;
+    }
+    public Patient(){
+
+    }
 }
