@@ -22,12 +22,16 @@ public class Room {
     Integer roomNumber;
 
 
-    @Column(name = "max_capacity")
+    @Column(name = "max_capacity",nullable = true)
     Integer capacity;
 
-    @Column(name = "available_from")
+    @Column(name = "available_from",nullable = true)
     Date availableFrom;
 
     @Column(name = "status")
     String status;
+
+    public Room(Integer roomNumber){
+        this.roomNumber = roomNumber;
+    }
 }

@@ -2,26 +2,30 @@ package com.hospitalmanagement.application.service;
 
 
 import com.hospitalmanagement.application.dto.AppointmentDto;
-import com.hospitalmanagement.application.model.Appointment;
-import com.hospitalmanagement.application.model.Patient;
-import com.hospitalmanagement.application.repository.AppointmentRepository;
-import com.hospitalmanagement.application.repository.PatientRepository;
-import org.apache.coyote.Response;
+import com.hospitalmanagement.application.dto.PatientDto;
+import com.hospitalmanagement.application.model.*;
+import com.hospitalmanagement.application.repository.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AppointmentService {
+public class ReceptionService {
 
     private final AppointmentRepository appointmentRepository;
     private final PatientService patientService;
     private final PatientRepository patientRepository;
+    private final ContactRepository contactRepository;
+    private final ContactPatientRepository contactPatientRepository;
+    private final RoomRepository roomRepository;
 
-    public AppointmentService(AppointmentRepository appointmentRepository, PatientService patientService, PatientRepository patientRepository) {
+    public ReceptionService(AppointmentRepository appointmentRepository, PatientService patientService, PatientRepository patientRepository, ContactRepository contactRepository, ContactPatientRepository contactPatientRepository, RoomRepository roomRepository) {
         this.appointmentRepository = appointmentRepository;
         this.patientService = patientService;
         this.patientRepository = patientRepository;
+        this.contactRepository = contactRepository;
+        this.contactPatientRepository = contactPatientRepository;
+        this.roomRepository = roomRepository;
     }
 
     public ResponseEntity<Object> scheduleAppointment(AppointmentDto appointmentDto){
@@ -32,10 +36,16 @@ public class AppointmentService {
         if(patientRepository.existsByFirstNameAndLastName(patient.getFirstName(),
                 patient.getLastName())){
             Appointment appointment = new Appointment();
+            Bill bill = new Bill();
             appointment.setPatient(patient);
             appointment.setDate(appointmentDto.getDate());
             appointment.setDoctor(appointmentDto.getDoctor());
             appointment.setTime(appointmentDto.getTime());
+            bill.setDate(appointmentDto.getDate());
+            bill.setPatient(patient);
+            bill.setAmount(300);
+            bill.setStatus("Not paid");
+            Room room = new Room(appointmentDto.getRoomNumber());
             appointmentRepository.save(appointment);
             return new ResponseEntity<>("Appointment created successfully", HttpStatus.OK);
         }else{
@@ -54,5 +64,18 @@ public class AppointmentService {
             return new ResponseEntity<>("Appointment created successfully", HttpStatus.OK);
         }
 
+    }
+    public ResponseEntity<Object> registerPatient(PatientDto patientDto){
+        Patient patient = new Patient(patientDto.getFirstName(),
+                patientDto.getLastName(),patientDto.getNationalId(),patientDto.getAddress());
+        Contact contact = new Contact();
+        ContactPatient contactPatient = new ContactPatient();
+        contact.setPhone(patientDto.getPhone());
+        contact.setEmail(patientDto.getEmail());
+        contactPatient.setContact(contact);
+        contactPatient.setPatient(patient);
+        contactRepository.save(contact);
+        contactPatientRepository.save(contactPatient);
+        return new ResponseEntity<>("Patient saved", HttpStatus.OK);
     }
 }

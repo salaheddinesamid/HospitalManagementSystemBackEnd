@@ -23,5 +23,6 @@ public class AppointmentDto {
     Time time;
     String status;
     String address;
+    Integer roomNumber;
 
 }
