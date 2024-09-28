@@ -34,4 +34,14 @@ public class MedicalRecord {
 
     @Column(name = "notes")
     String notes;
+
+    public MedicalRecord(Patient patient,Doctor doctor,String diagnosis,String testResult, Date date,String notes){
+        this.patient = patient;
+        this.doctor = doctor;
+        this.diagnosis = diagnosis;
+        this.date = date;
+        this.testResult = testResult;
+        this.notes = notes;
+
+    }
 }

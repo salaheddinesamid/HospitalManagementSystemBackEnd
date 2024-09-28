@@ -26,6 +26,10 @@ public class Patient {
     @Column(name = "address")
     String address;
 
+    @OneToOne
+    @JoinColumn(name = "room_id",nullable = true)
+    Room room;
+
     public Patient(String firstName,String lastName,String nationalId,String address){
         this.firstName  = firstName;
         this.lastName = lastName;

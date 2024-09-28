@@ -1,9 +1,6 @@
 package com.hospitalmanagement.application.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,10 +25,15 @@ public class Room {
     @Column(name = "available_from",nullable = true)
     Date availableFrom;
 
-    @Column(name = "status")
+    @Column(name = "status",nullable = true)
     String status;
 
-    public Room(Integer roomNumber){
+    @OneToOne
+    @JoinColumn(name = "patient_id")
+    Patient patient;
+
+    public Room(Integer roomNumber,String status){
         this.roomNumber = roomNumber;
+        this.status = status;
     }
 }
