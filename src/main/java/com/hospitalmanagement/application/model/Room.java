@@ -32,7 +32,7 @@ public class Room {
     @JoinColumn(name = "patient_id")
     Patient patient;
 
-    public Room(Integer roomNumber,String status){
+    public Room(Integer roomNumber){
         this.roomNumber = roomNumber;
         this.status = status;
     }
