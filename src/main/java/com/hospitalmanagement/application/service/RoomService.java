@@ -1,13 +1,11 @@
 package com.hospitalmanagement.application.service;
 
 
-import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.model.Room;
 import com.hospitalmanagement.application.repository.RoomRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
