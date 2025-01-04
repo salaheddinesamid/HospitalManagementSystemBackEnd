@@ -1,8 +1,10 @@
 package com.hospitalmanagement.application.service;
 
 
+import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.model.Room;
 import com.hospitalmanagement.application.repository.RoomRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -20,8 +22,17 @@ public class RoomService {
     public List<Room> getAllRooms(){
         return roomRepository.findAll();
     }
+
     public List<Room> getAvailableRooms(){
-        Date date = new Date();
-    return roomRepository.findAllByAvailableFromBefore(date);
+
     }
+    public ResponseEntity<Object> findPatientRoom(String firstName){
+        if(){
+
+        }else {
+
+        }
+    }
+
+    public void
 }

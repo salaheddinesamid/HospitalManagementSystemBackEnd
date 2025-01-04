@@ -23,6 +23,9 @@ public class Patient {
     @Column(name = "national_id")
     String nationalId;
 
+    @Column(name = "email")
+    String email;
+
     @Column(name = "address")
     String address;
 

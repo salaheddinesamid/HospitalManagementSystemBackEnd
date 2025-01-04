@@ -5,4 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PatientRepository extends JpaRepository<Patient,Integer> {
     boolean existsByFirstNameAndLastName(String firstName,String lastName);
+    Patient findByEmail(String email);
+
+    //Check user existence
+    boolean existsByEmail(String email);
 }

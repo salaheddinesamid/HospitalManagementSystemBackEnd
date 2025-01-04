@@ -9,8 +9,7 @@ import java.sql.Time;
 import java.util.Date;
 
 @Data
-@Getter
-@Setter
+
 public class AppointmentDto {
 
     String firstName;
