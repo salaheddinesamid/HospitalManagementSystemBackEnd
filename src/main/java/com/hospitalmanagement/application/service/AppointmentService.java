@@ -27,22 +27,23 @@ public class AppointmentService {
         patient.setLastName(appointmentDto.getLastName());
         patient.setAddress(appointmentDto.getAddress());
         patient.setNationalId(appointmentDto.getNationalId());
+        patient.setEmail(appointmentDto.getEmail());
         patientRepository.save(patient);
     }
 
     public ResponseEntity<Object> createAppointment(AppointmentDto appointmentDto){
         Appointment appointment = new Appointment();
-        if (patientRepository.existsByEmail(appointmentDto.getEmail())){
-            Patient patient = patientRepository.findByEmail(appointmentDto.getEmail());
-            appointment.setPatient(patient);
-            appointment.setDate(appointmentDto.getDate());
-            appointment.setDoctor(appointmentDto.getDoctor());
-            appointment.setTime(appointmentDto.getTime());
-            appointment.setStatus(appointmentDto.getStatus());
-            appointmentRepository.save(appointment);
-        }else{
+        Patient patient = patientRepository.findByEmail(appointmentDto.getEmail());
+        if (!patientRepository.existsByEmail(appointmentDto.getEmail())) {
             createPatientAutomatically(appointmentDto);
+            //Patient patient = patientRepository.findByEmail(appointmentDto.getEmail());
         }
+        appointment.setPatient(patient);
+        appointment.setDate(appointmentDto.getDate());
+        appointment.setDoctor(appointmentDto.getDoctor());
+        appointment.setTime(appointmentDto.getTime());
+        appointment.setStatus(appointmentDto.getStatus());
+        appointmentRepository.save(appointment);
 
         return new ResponseEntity<>("APPOINTMENT CREATED", HttpStatus.OK);
     }
