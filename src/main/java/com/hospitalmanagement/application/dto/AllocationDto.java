@@ -7,5 +7,5 @@ import lombok.Data;
 public class AllocationDto {
 
     Integer roomNumber;
-    Patient patient;
+    String name;
 }

@@ -20,7 +20,7 @@ public class History {
     Date date;
 
     @OneToOne
-    @Column(name = "by")
+            @JoinColumn(name = "by")
     Patient patient;
 
     @Column(name = "action")

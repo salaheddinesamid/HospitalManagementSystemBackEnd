@@ -5,6 +5,7 @@ import com.hospitalmanagement.application.model.Appointment;
 import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.repository.AppointmentRepository;
 import com.hospitalmanagement.application.repository.PatientRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ public class AppointmentService {
         patient.setNationalId(appointmentDto.getNationalId());
         patientRepository.save(patient);
     }
+
     public ResponseEntity<Object> createAppointment(AppointmentDto appointmentDto){
         Appointment appointment = new Appointment();
         if (patientRepository.existsByEmail(appointmentDto.getEmail())){
@@ -42,6 +44,6 @@ public class AppointmentService {
             createPatientAutomatically(appointmentDto);
         }
 
-        return new ResponseEntity<>("APPOINTMENT CREATED",)
+        return new ResponseEntity<>("APPOINTMENT CREATED", HttpStatus.OK);
     }
 }

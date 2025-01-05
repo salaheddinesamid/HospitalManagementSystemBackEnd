@@ -9,4 +9,6 @@ public interface PatientRepository extends JpaRepository<Patient,Integer> {
 
     //Check user existence
     boolean existsByEmail(String email);
+
+    Patient findByFirstName(String firstName);
 }

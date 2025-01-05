@@ -16,7 +16,6 @@ public class Allocation {
     @Column(name = "room_number")
     Integer roomNumber;
 
-    @OneToOne
-    @Column(name = "patient")
-    Patient patient;
+    @Column(name = "patient_name")
+    String name;
 }
