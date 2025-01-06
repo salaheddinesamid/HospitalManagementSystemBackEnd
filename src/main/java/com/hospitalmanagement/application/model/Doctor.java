@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Getter
 @Setter
@@ -23,12 +25,18 @@ public class Doctor {
     @Column(name = "specialization")
     String specialization;
 
-    @OneToOne
-    @JoinColumn(name = "contact")
-    ContactDoctor contactDoctor;
+    @Column(name = "age")
+    Integer age;
 
+    @Column(name = "years_of_experience")
+    Integer yearsOfExperience;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @Column(name = "nationalId")
+    String nationalId;
+
+    @Column(name = "professionalId")
+    String professionalId;
+
+    @Column(name = "date_of_birth")
+    Date birth;
 }

@@ -12,7 +12,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.net.http.HttpRequest;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +22,11 @@ public class SecurityConfiguration {
         httpSecurity
                 .csrf()
                 .disable()
-                .authorizeHttpRequests(auth->auth.requestMatchers("api/test/**","api/appointment/**","/api/user/**").permitAll()
+                .authorizeHttpRequests(auth->auth.requestMatchers("api/test/**",
+                        "api/appointment/**",
+                        "/api/user/**"
+                        ,"api/doctor/**"
+                        ).permitAll()
                 );
         return httpSecurity.build();
 
