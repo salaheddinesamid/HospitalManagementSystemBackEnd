@@ -1,6 +1,7 @@
 package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.dto.AppointmentDto;
+import com.hospitalmanagement.application.exception.AppointmentException;
 import com.hospitalmanagement.application.model.Appointment;
 import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.repository.AppointmentRepository;
@@ -46,5 +47,15 @@ public class AppointmentService {
         appointmentRepository.save(appointment);
 
         return new ResponseEntity<>("APPOINTMENT CREATED", HttpStatus.OK);
+    }
+
+    public ResponseEntity<Object> deleteAppointment(Integer appointmentId){
+        try{
+            appointmentRepository.deleteById(appointmentId);
+            return new ResponseEntity<>("Appointment Deleted Successfully"
+            ,HttpStatus.OK);
+        }catch  (AppointmentException e){
+            throw new AppointmentException();
+        }
     }
 }
