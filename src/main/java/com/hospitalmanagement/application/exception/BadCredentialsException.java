@@ -1,2 +1,4 @@
-package com.hospitalmanagement.application.exception;public class BadCredentialsException {
+package com.hospitalmanagement.application.exception;
+
+public class BadCredentialsException extends RuntimeException{
 }

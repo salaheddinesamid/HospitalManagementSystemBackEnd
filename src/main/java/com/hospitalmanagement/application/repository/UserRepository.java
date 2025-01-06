@@ -1,2 +1,10 @@
-package com.hospitalmanagement.application.repository;public interface UserRepository {
+package com.hospitalmanagement.application.repository;
+
+import com.hospitalmanagement.application.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User,Integer> {
+
+    boolean existsByEmail(String email);
+    User findByEmail(String email);
 }

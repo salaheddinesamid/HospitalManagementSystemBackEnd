@@ -1,2 +1,9 @@
-package com.hospitalmanagement.application.dto;public class LoginDTO {
+package com.hospitalmanagement.application.dto;
+
+import lombok.Data;
+
+@Data
+public class LoginDTO {
+    String email;
+    String password;
 }

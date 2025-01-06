@@ -1,5 +1,4 @@
-package com.taskflow.service2.configuration.jwt;
-
+package com.hospitalmanagement.application.jwt;
 
 import io.jsonwebtoken.*;
 import jakarta.servlet.http.HttpServletRequest;

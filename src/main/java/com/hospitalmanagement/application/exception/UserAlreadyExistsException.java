@@ -1,2 +1,4 @@
-package com.hospitalmanagement.application.exception;public class UserAlreadyExistsException {
+package com.hospitalmanagement.application.exception;
+
+public class UserAlreadyExistsException extends RuntimeException{
 }
