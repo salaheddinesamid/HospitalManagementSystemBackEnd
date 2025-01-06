@@ -1,6 +1,8 @@
 package com.hospitalmanagement.application.service;
 
+import com.hospitalmanagement.application.dto.DoctorRegistrationDto;
 import com.hospitalmanagement.application.dto.MedicalRecordDto;
+import com.hospitalmanagement.application.exception.UserAlreadyExistsException;
 import com.hospitalmanagement.application.model.Doctor;
 import com.hospitalmanagement.application.model.MedicalRecord;
 import com.hospitalmanagement.application.model.Patient;
@@ -25,6 +27,24 @@ public class DoctorService {
         this.medicalRecordRepository = medicalRecordRepository;
         this.patientRepository = patientRepository;
         this.doctorRepository = doctorRepository;
+    }
+
+    public ResponseEntity<Object> createNewDoctor(DoctorRegistrationDto doctorRegistrationDto){
+        if(!doctorRepository.existsByNationalId(doctorRegistrationDto.getNationalId())){
+            Doctor doctor = new Doctor();
+            doctor.setAge(doctorRegistrationDto.getAge());
+            doctor.setNationalId(doctorRegistrationDto.getNationalId());
+            doctor.setBirth(doctorRegistrationDto.getBirthday());
+            doctor.setSpecialization(doctorRegistrationDto.getSpecialization());
+            doctor.setYearsOfExperience(doctorRegistrationDto.getYearsOfExperience());
+            doctor.setSpecialization(doctorRegistrationDto.getSpecialization());
+            doctor.setFirstName(doctorRegistrationDto.getFirstName());
+            doctor.setLastName(doctorRegistrationDto.getLastName());
+            doctorRepository.save(doctor);
+            return new ResponseEntity<>("Doctor Created",HttpStatus.OK);
+        }else{
+            throw  new UserAlreadyExistsException();
+        }
     }
 
     public ResponseEntity<Object> createMedicalRecord(MedicalRecordDto medicalRecordDto){
