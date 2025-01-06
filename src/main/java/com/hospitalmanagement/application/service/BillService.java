@@ -1,10 +1,8 @@
 package com.hospitalmanagement.application.service;
 
 
-import com.hospitalmanagement.application.dto.CreditCardDto;
 import com.hospitalmanagement.application.model.Bill;
 import com.hospitalmanagement.application.repository.BillRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

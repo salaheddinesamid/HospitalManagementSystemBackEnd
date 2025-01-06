@@ -13,19 +13,19 @@ import org.springframework.stereotype.Service;
 public class ReceptionService {
 
     private final AppointmentRepository appointmentRepository;
-    private final PatientService patientService;
+    //private final PatientService patientService;
     private final PatientRepository patientRepository;
     private final ContactRepository contactRepository;
     private final ContactPatientRepository contactPatientRepository;
-    private final RoomRepository roomRepository;
+    //private final RoomRepository roomRepository;
 
     public ReceptionService(AppointmentRepository appointmentRepository, PatientService patientService, PatientRepository patientRepository, ContactRepository contactRepository, ContactPatientRepository contactPatientRepository, RoomRepository roomRepository) {
         this.appointmentRepository = appointmentRepository;
-        this.patientService = patientService;
+        //this.patientService = patientService;
         this.patientRepository = patientRepository;
         this.contactRepository = contactRepository;
         this.contactPatientRepository = contactPatientRepository;
-        this.roomRepository = roomRepository;
+        //this.roomRepository = roomRepository;
     }
 
     public ResponseEntity<Object> scheduleAppointment(AppointmentDto appointmentDto){
