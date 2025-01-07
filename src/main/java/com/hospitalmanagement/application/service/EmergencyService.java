@@ -36,4 +36,9 @@ public class EmergencyService {
     public List<Emergency> getDailyEmergency(Date date){
         return emergencyRepository.findAllByDate(date);
     }
+
+    public ResponseEntity<Object> deleteEmergency(Integer emerghecncyId) {
+        emergencyRepository.deleteById(emerghecncyId);
+        return new ResponseEntity<>("Emergecny deleted",HttpStatus.OK);
+    }
 }
