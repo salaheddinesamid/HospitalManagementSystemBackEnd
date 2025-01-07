@@ -26,7 +26,7 @@ public class EmergencyController {
         return emergencyService.reportEmergency(emergencyDto);
     }
     @GetMapping("/getAllEmergency/{date}")
-    public <List<Emergency> getAllEmergency(
+    public List<Emergency> getAllEmergency(
             @PathVariable Date date
             ){
         return emergencyService.getDailyEmergency(date);
