@@ -3,6 +3,9 @@ package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.model.Bill;
 import com.hospitalmanagement.application.repository.BillRepository;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +21,14 @@ public class BillService {
 
     public List<Bill> getAllBills(){
         return billRepository.findAll();
+    }
+
+    public ResponseEntity<Object> payBill(Integer billingId){
+        Bill bill = billRepository.findById(billingId).get();
+        bill.setStatus("Paid");
+        billRepository.save(bill);
+        return new ResponseEntity<>("Billing paid", HttpStatus.OK);
+
     }
 
     public List<Bill> getNotPaid(){
