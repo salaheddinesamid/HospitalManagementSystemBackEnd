@@ -18,6 +18,7 @@ public class AppointmentDto {
     String email;
     String phone;
     Doctor doctor;
+    String disease;
     Date date;
     Time time;
     String status;

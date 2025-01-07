@@ -23,6 +23,9 @@ public class Appointment {
     @JoinColumn(name = "doctor_id")
     Doctor doctor;
 
+    @Column(name = "disease")
+    String disease;
+
     @Column(name = "date")
     Date date;
 

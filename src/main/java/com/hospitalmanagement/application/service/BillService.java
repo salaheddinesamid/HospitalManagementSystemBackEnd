@@ -27,6 +27,4 @@ public class BillService {
     public List<Bill> getPatientBill(Integer id){
         return billRepository.findAllByPatient_Id(id);
     }
-
-
 }
