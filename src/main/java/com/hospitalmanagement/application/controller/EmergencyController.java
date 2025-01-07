@@ -1,12 +1,13 @@
 package com.hospitalmanagement.application.controller;
 
+import com.hospitalmanagement.application.dto.Emergency;
 import com.hospitalmanagement.application.dto.EmergencyDto;
 import com.hospitalmanagement.application.service.EmergencyService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/emergency")
@@ -23,5 +24,12 @@ public class EmergencyController {
             @RequestBody EmergencyDto emergencyDto
             ){
         return emergencyService.reportEmergency(emergencyDto);
+    }
+    @GetMapping("/getAllEmergency/{date}")
+    public <List<Emergency> getAllEmergency(
+            @PathVariable Date date
+            ){
+        return emergencyService.getDailyEmergency(date);
+
     }
 }

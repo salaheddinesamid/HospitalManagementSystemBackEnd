@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class EmergencyService {
 
@@ -28,5 +31,9 @@ public class EmergencyService {
         emergency.setUser(user);
         emergencyRepository.save(emergency);
         return new ResponseEntity<>("EMERGENCY ADDED IN THE SYSTEM", HttpStatus.OK);
+    }
+
+    public List<Emergency> getDailyEmergency(Date date){
+        return emergencyRepository.findAllByDate(date);
     }
 }
