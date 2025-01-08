@@ -32,9 +32,9 @@ public class EmergencyController {
         return emergencyService.getDailyEmergency(date);
 
     }
-
+    /*
     @DeleteMapping("/delete_emereggncy")
     public ResponseEntity<Object> deleteEmergency(){
         return emergencyService.
-    }
+    }*/
 }

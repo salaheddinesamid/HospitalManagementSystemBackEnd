@@ -31,6 +31,12 @@ public class BillService {
 
     }
 
+    public ResponseEntity<Object> reportUnpaidBill(
+            String nationalId
+    ){
+
+    }
+
     public List<Bill> getNotPaid(){
         return billRepository.findAllByStatus("Not paid");
     }

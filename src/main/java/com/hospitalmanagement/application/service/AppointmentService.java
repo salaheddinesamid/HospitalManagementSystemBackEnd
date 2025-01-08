@@ -12,6 +12,7 @@ import com.hospitalmanagement.application.repository.DiseaseRepository;
 import com.hospitalmanagement.application.repository.PatientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -48,6 +49,8 @@ public class AppointmentService {
         Disease d = diseaseRepository.findByName(disease);
         return d.getPrice();
     }
+
+    @Async
     public ResponseEntity<Object> createAppointment(AppointmentDto appointmentDto){
         Appointment appointment = new Appointment();
         Bill bill = new Bill();
