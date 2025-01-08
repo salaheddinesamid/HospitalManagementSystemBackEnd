@@ -28,6 +28,7 @@ public class ReceptionService {
         //this.roomRepository = roomRepository;
     }
 
+    /*
     public ResponseEntity<Object> scheduleAppointment(AppointmentDto appointmentDto){
         Patient patient = new Patient(appointmentDto.getFirstName(),
                 appointmentDto.getLastName(),appointmentDto.getNationalId(),
@@ -64,7 +65,7 @@ public class ReceptionService {
             return new ResponseEntity<>("Appointment created successfully", HttpStatus.OK);
         }
 
-    }
+    }*/
     public ResponseEntity<Object> registerPatient(PatientDto patientDto){
         Patient patient = new Patient(patientDto.getFirstName(),
                 patientDto.getLastName(),patientDto.getNationalId(),patientDto.getAddress());

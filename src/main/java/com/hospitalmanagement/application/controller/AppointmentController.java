@@ -22,7 +22,7 @@ public class AppointmentController {
     }
 
     @DeleteMapping("delete/{appointmentId}")
-    public ResponseEntity<Object> deleteAppointment(@PathVariable Integer appointmentId){
-        return appointmentService.deleteAppointment(appointmentId);
+    public ResponseEntity<Object> cancelAppointment(@PathVariable Integer appointmentId){
+        return appointmentService.cancelUserAppointment(appointmentId);
     }
 }

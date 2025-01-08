@@ -11,18 +11,12 @@ import java.util.Date;
 @Data
 
 public class AppointmentDto {
-
-    String firstName;
-    String lastName;
-    String nationalId;
-    String email;
-    String phone;
-    Doctor doctor;
+    Integer userId;
+    Integer doctor;
     String disease;
     Date date;
     Time time;
     String status;
-    String address;
     Integer roomNumber;
 
 }

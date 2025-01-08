@@ -2,14 +2,8 @@ package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.dto.AppointmentDto;
 import com.hospitalmanagement.application.exception.AppointmentException;
-import com.hospitalmanagement.application.model.Appointment;
-import com.hospitalmanagement.application.model.Bill;
-import com.hospitalmanagement.application.model.Disease;
-import com.hospitalmanagement.application.model.Patient;
-import com.hospitalmanagement.application.repository.AppointmentRepository;
-import com.hospitalmanagement.application.repository.BillRepository;
-import com.hospitalmanagement.application.repository.DiseaseRepository;
-import com.hospitalmanagement.application.repository.PatientRepository;
+import com.hospitalmanagement.application.model.*;
+import com.hospitalmanagement.application.repository.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
@@ -26,15 +20,21 @@ public class AppointmentService {
     private final DiseaseRepository diseaseRepository;
     //private final BillService billService;
     private final BillRepository billRepository;
+    private final UserRepository userRepository;
+    private final DoctorRepository doctorRepository;
 
-    public AppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DiseaseRepository diseaseRepository, BillService billService, BillRepository billRepository) {
+    public AppointmentService(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DiseaseRepository diseaseRepository, BillService billService, BillRepository billRepository, UserRepository userRepository, DoctorRepository doctorRepository) {
         this.appointmentRepository = appointmentRepository;
         this.patientRepository = patientRepository;
         this.diseaseRepository = diseaseRepository;
         //this.billService = billService;
         this.billRepository = billRepository;
-    }
+        this.userRepository = userRepository;
 
+        this.doctorRepository = doctorRepository;
+    }
+    /* TO BE REVIEWED
+    // Permanent and does not use the app
     public void createPatientAutomatically(AppointmentDto appointmentDto){
         Patient patient = new Patient();
         patient.setFirstName(appointmentDto.getFirstName());
@@ -43,25 +43,30 @@ public class AppointmentService {
         patient.setNationalId(appointmentDto.getNationalId());
         patient.setEmail(appointmentDto.getEmail());
         patientRepository.save(patient);
-    }
+    }*/
+
 
     public Integer getDiseasePrice(String disease){
         Disease d = diseaseRepository.findByName(disease);
         return d.getPrice();
     }
 
+    public ResponseEntity<Object> cancelUserAppointment(
+            Integer appointmentId
+    ){
+        appointmentRepository.deleteById(appointmentId);
+        return new ResponseEntity<>("Appointment canceled ",HttpStatus.OK);
+    }
+
     @Async
     public ResponseEntity<Object> createAppointment(AppointmentDto appointmentDto){
         Appointment appointment = new Appointment();
         Bill bill = new Bill();
-        Patient patient = patientRepository.findByEmail(appointmentDto.getEmail());
-        if (!patientRepository.existsByEmail(appointmentDto.getEmail())) {
-            createPatientAutomatically(appointmentDto);
-            //Patient patient = patientRepository.findByEmail(appointmentDto.getEmail());
-        }
-        appointment.setPatient(patient);
+        Doctor doctor = doctorRepository.findById(appointmentDto.getDoctor()).get();
+        User user   = userRepository.findById(appointmentDto.getUserId()).get();
+        appointment.setUser(user);
         appointment.setDate(appointmentDto.getDate());
-        appointment.setDoctor(appointmentDto.getDoctor());
+        appointment.setDoctor(doctor);
         appointment.setTime(appointmentDto.getTime());
         appointment.setStatus(appointmentDto.getStatus());
         bill.setAmount(getDiseasePrice(appointmentDto.getDisease()));

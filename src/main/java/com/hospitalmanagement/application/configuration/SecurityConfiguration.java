@@ -28,7 +28,8 @@ public class SecurityConfiguration{
                 .authorizeHttpRequests(auth->auth.requestMatchers("api/test/**",
                         "api/appointment/**",
                         "/api/user/**"
-                        ,"api/doctor/**"
+                        ,"api/doctor/**",
+                        "/api/bill/**"
                         ).permitAll()
                 );
         return httpSecurity.build();

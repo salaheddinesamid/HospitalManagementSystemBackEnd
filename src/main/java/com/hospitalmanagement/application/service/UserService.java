@@ -64,4 +64,28 @@ public class UserService {
            throw new BadCredentialsException();
        }
     }
+
+    public ResponseEntity<Object> resetPassword(
+            String email,
+            String newPassword
+    ){
+        User user = userRepository.findByEmail(email);
+        user.setPassword(passwordEncoder.encode(newPassword));
+        return new ResponseEntity<>("Password reset successfully",HttpStatus.OK);
+    }
+
+    /*
+
+    public void deleteUserData(
+            Integer userId
+    ){
+        User user = userRepository.findById(userId).get();
+
+    }
+    public ResponseEntity<Object> deleteAccount(
+            String email
+    ){
+        User user = userRepository.findByEmail(email);
+
+    }*/
 }
