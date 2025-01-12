@@ -1,7 +1,6 @@
 package com.hospitalmanagement.application.configuration;
 
 
-import jakarta.servlet.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.io.IOException;
 
 
 @Configuration
@@ -29,7 +26,8 @@ public class SecurityConfiguration{
                         "api/appointment/**",
                         "/api/user/**"
                         ,"api/doctor/**",
-                        "/api/bill/**"
+                        "/api/bill/**",
+                        "api/patient/**"
                         ).permitAll()
                 );
         return httpSecurity.build();

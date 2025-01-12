@@ -10,8 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PatientDto {
-    String firstName;
-    String lastName;
+    String fullName;
     String nationalId;
     String address;
     String phone;

@@ -1,5 +1,6 @@
 package com.hospitalmanagement.application.controller;
 
+import com.hospitalmanagement.application.dto.DoctorDto;
 import com.hospitalmanagement.application.dto.DoctorRegistrationDto;
 import com.hospitalmanagement.application.model.Doctor;
 import com.hospitalmanagement.application.repository.DoctorRepository;
@@ -22,7 +23,7 @@ public class DoctorController {
     }
 
     @GetMapping("/")
-    public List<Doctor> getAllDoctors(){
+    public ResponseEntity<List<DoctorDto>> getAllDoctors(){
         return doctorService.getAllDoctors();
     }
 

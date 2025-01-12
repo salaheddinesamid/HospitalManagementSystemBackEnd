@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PatientService {
 
@@ -27,6 +30,7 @@ public class PatientService {
         this.contactPatientRepository = contactPatientRepository;
     }
 
+    /*
     @Transactional
     public ResponseEntity<Object> registerPatient(PatientDto patientDto){
         Patient patient =  new Patient();
@@ -50,5 +54,20 @@ public class PatientService {
 
         }
         return new ResponseEntity<>("Patient created",HttpStatus.OK);
+    }
+     */
+
+    public ResponseEntity<List<PatientDto>> getAllPatients(){
+        List<Patient> patients = patientRepository.findAll();
+        List<PatientDto> patientDtoList = patients
+                .stream().map(patient -> {
+                    PatientDto patientDto = new PatientDto();
+                    patientDto.setFullName(patient.getFirstName() + " " + patient.getLastName());
+                    patientDto.setAddress(patient.getAddress());
+                    patientDto.setEmail(patient.getEmail());
+                    patientDto.setNationalId(patient.getNationalId());
+                    return patientDto;
+                }).toList();
+        return new ResponseEntity<>(patientDtoList,HttpStatus.OK);
     }
 }

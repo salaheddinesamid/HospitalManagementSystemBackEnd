@@ -66,6 +66,8 @@ public class ReceptionService {
         }
 
     }*/
+
+    /*
     public ResponseEntity<Object> registerPatient(PatientDto patientDto){
         Patient patient = new Patient(patientDto.getFirstName(),
                 patientDto.getLastName(),patientDto.getNationalId(),patientDto.getAddress());
@@ -79,4 +81,5 @@ public class ReceptionService {
         contactPatientRepository.save(contactPatient);
         return new ResponseEntity<>("Patient saved", HttpStatus.OK);
     }
+     */
 }

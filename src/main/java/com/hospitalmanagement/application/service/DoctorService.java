@@ -1,5 +1,6 @@
 package com.hospitalmanagement.application.service;
 
+import com.hospitalmanagement.application.dto.DoctorDto;
 import com.hospitalmanagement.application.dto.DoctorRegistrationDto;
 import com.hospitalmanagement.application.dto.MedicalRecordDto;
 import com.hospitalmanagement.application.exception.UserAlreadyExistsException;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.print.Doc;
 import java.util.List;
 
 
@@ -62,7 +64,21 @@ public class DoctorService {
         return new ResponseEntity<>("Medical record has been created", HttpStatus.OK);
     }
 
-    public List<Doctor> getAllDoctors(){
-        return doctorRepository.findAll();
+    public ResponseEntity<List<DoctorDto>> getAllDoctors(){
+        List<Doctor> doctors = doctorRepository.findAll();
+        List<DoctorDto> doctorDtoList = doctors
+                .stream().map(
+                        doctor -> {
+                            DoctorDto doctorDto = new DoctorDto();
+                            doctorDto.setFullName(doctor.getFirstName() + " " + doctor.getLastName());
+                            doctorDto.setProfessionalId(doctor.getProfessionalId());
+                            doctorDto.setAge(doctor.getAge());
+                            doctorDto.setSpecialization(doctor.getSpecialization());
+                            doctorDto.setProfessionalId(doctor.getProfessionalId());
+                            return  doctorDto;
+                        }
+                ).toList();
+
+        return new ResponseEntity<>(doctorDtoList,HttpStatus.OK);
     }
 }

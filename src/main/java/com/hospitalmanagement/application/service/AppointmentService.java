@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AppointmentService {
@@ -49,6 +50,10 @@ public class AppointmentService {
     public Integer getDiseasePrice(String disease){
         Disease d = diseaseRepository.findByName(disease);
         return d.getPrice();
+    }
+
+    public ResponseEntity<List<Appointment>> getAllAppointment(){
+        return new ResponseEntity<>(appointmentRepository.findAll(), HttpStatus.OK);
     }
 
     public ResponseEntity<Object> cancelUserAppointment(
