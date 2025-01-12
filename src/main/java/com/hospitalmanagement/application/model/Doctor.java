@@ -13,7 +13,7 @@ import java.util.Date;
 public class Doctor {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
     @Column(name = "first_name")

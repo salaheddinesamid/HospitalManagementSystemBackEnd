@@ -1,2 +1,14 @@
-package com.hospitalmanagement.application.dto;public class NewPatientDto {
+package com.hospitalmanagement.application.dto;
+
+import lombok.Data;
+
+@Data
+public class NewPatientDto {
+
+    String firstName;
+    String lastName;
+    String nationalId;
+    String address;
+    String phone;
+    String email;
 }

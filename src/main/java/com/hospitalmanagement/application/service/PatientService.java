@@ -30,32 +30,23 @@ public class PatientService {
         this.contactPatientRepository = contactPatientRepository;
     }
 
-    /*
     @Transactional
-    public ResponseEntity<Object> registerPatient(PatientDto patientDto){
-        Patient patient =  new Patient();
-        Contact contact = new Contact();
+    public ResponseEntity<Object> registerPatient(PatientDto patientDto) {
+        Patient patient = new Patient();
+        //Contact contact = new Contact();
         ContactPatient contactPatient = new ContactPatient();
-        if(!(patientRepository.existsByFirstNameAndLastName(patientDto.getFirstName(),patientDto.getLastName()))){
+        if (!(patientRepository.existsByFirstNameAndLastName(patientDto.getFirstName(), patientDto.getLastName()))) {
             patient.setFirstName(patientDto.getFirstName());
             patient.setLastName(patientDto.getLastName());
             patient.setAddress(patientDto.getAddress());
             patient.setNationalId(patientDto.getNationalId());
             patientRepository.save(patient);
-            contact.setEmail(patientDto.getEmail());
-            contact.setPhone(patientDto.getPhone());
-            contactRepository.save(contact);
-            contactPatient.setPatient(patient);
-            contactPatient.setContact(contact);
-            contactPatientRepository.save(contactPatient);
-
-        }else{
+        } else {
             return new ResponseEntity<>("Patient already exists", HttpStatus.ALREADY_REPORTED);
 
         }
-        return new ResponseEntity<>("Patient created",HttpStatus.OK);
+        return new ResponseEntity<>("Patient created", HttpStatus.OK);
     }
-     */
 
     public ResponseEntity<List<PatientDto>> getAllPatients(){
         List<Patient> patients = patientRepository.findAll();

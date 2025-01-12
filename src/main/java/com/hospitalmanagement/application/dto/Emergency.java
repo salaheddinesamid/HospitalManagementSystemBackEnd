@@ -23,6 +23,6 @@ public class Emergency {
     String location;
 
     @OneToOne
-    @JoinColumn(name = "")
+    @JoinColumn(name = "", nullable = true)
     User user;
 }

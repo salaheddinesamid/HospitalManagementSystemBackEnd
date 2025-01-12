@@ -20,8 +20,8 @@ public class History {
     Date date;
 
     @OneToOne
-            @JoinColumn(name = "by")
-    Patient patient;
+    @JoinColumn(name = "by")
+    User user;
 
     @Column(name = "action")
     String action;
