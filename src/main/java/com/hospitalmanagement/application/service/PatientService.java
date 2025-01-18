@@ -1,5 +1,6 @@
 package com.hospitalmanagement.application.service;
 
+import com.hospitalmanagement.application.dto.NewPatientDto;
 import com.hospitalmanagement.application.dto.PatientDto;
 import com.hospitalmanagement.application.model.Contact;
 import com.hospitalmanagement.application.model.ContactPatient;
@@ -14,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class PatientService {
 
@@ -31,15 +30,15 @@ public class PatientService {
     }
 
     @Transactional
-    public ResponseEntity<Object> registerPatient(PatientDto patientDto) {
+    public ResponseEntity<Object> registerPatient(NewPatientDto newPatientDto) {
         Patient patient = new Patient();
         //Contact contact = new Contact();
         ContactPatient contactPatient = new ContactPatient();
-        if (!(patientRepository.existsByFirstNameAndLastName(patientDto.getFirstName(), patientDto.getLastName()))) {
-            patient.setFirstName(patientDto.getFirstName());
-            patient.setLastName(patientDto.getLastName());
-            patient.setAddress(patientDto.getAddress());
-            patient.setNationalId(patientDto.getNationalId());
+        if (!(patientRepository.existsByFirstNameAndLastName(newPatientDto.getFirstName(), newPatientDto.getLastName()))) {
+            patient.setFirstName(newPatientDto.getFirstName());
+            patient.setLastName(newPatientDto.getLastName());
+            patient.setAddress(newPatientDto.getAddress());
+            patient.setNationalId(newPatientDto.getNationalId());
             patientRepository.save(patient);
         } else {
             return new ResponseEntity<>("Patient already exists", HttpStatus.ALREADY_REPORTED);

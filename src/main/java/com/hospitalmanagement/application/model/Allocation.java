@@ -18,4 +18,7 @@ public class Allocation {
 
     @Column(name = "patient_name")
     String name;
+
+    @Column(name = "nationalId")
+    String nationalId;
 }

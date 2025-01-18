@@ -9,4 +9,5 @@ public class AllocationDto {
     Integer receptionistId;
     Integer roomNumber;
     String name;
+    String nationalId;
 }
