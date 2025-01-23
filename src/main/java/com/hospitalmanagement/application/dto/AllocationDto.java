@@ -8,6 +8,7 @@ public class AllocationDto {
 
     Integer receptionistId;
     Integer roomNumber;
-    String name;
+    String firstName;
+    String lastName;
     String nationalId;
 }

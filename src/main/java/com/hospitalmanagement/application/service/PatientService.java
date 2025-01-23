@@ -2,7 +2,6 @@ package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.dto.NewPatientDto;
 import com.hospitalmanagement.application.dto.PatientDto;
-import com.hospitalmanagement.application.model.Contact;
 import com.hospitalmanagement.application.model.ContactPatient;
 import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.repository.ContactPatientRepository;
