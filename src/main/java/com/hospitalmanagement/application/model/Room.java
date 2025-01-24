@@ -28,6 +28,9 @@ public class Room {
     @Column(name = "status",nullable = true)
     String status;
 
+    @Column(name = "price_per_day")
+    Integer pricePerDay;
+
     @OneToOne
     @JoinColumn(name = "patient_id")
     Patient patient;

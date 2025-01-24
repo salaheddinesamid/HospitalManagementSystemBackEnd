@@ -1,12 +1,10 @@
 package com.hospitalmanagement.application.controller;
 
+import com.hospitalmanagement.application.dto.NewPatientDto;
 import com.hospitalmanagement.application.dto.PatientDto;
-import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.service.PatientService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,10 @@ public class PatientController {
     @GetMapping("/get_all")
     public ResponseEntity<List<PatientDto>> allPatients(){
         return patientService.getAllPatients();
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity<Object> newPatient(@RequestBody NewPatientDto newPatientDto){
+        return patientService.registerPatient(newPatientDto);
     }
 }

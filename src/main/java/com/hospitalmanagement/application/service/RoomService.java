@@ -18,6 +18,7 @@ public class RoomService {
     private final RoomRepository roomRepository;
     private final PatientRepository patientRepository;
 
+
     public RoomService(RoomRepository roomRepository, PatientRepository patientRepository) {
         this.roomRepository = roomRepository;
         this.patientRepository = patientRepository;
@@ -35,5 +36,11 @@ public class RoomService {
         catch (PatientRoomNotFoundException exception){
             throw new PatientRoomNotFoundException();
         }
+    }
+
+    public Integer calculatePricePerDay(Integer roomNumber,
+                                        Integer totalDays){
+        Room room = roomRepository.findByRoomNumber(roomNumber);
+        return room.getPricePerDay() * totalDays;
     }
 }

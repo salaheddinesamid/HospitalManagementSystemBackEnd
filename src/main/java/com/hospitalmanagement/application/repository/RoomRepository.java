@@ -11,4 +11,5 @@ public interface RoomRepository extends JpaRepository<Room,Integer> {
 
     List<Room> findAllByAvailableFromBefore(Date date);
     Room findByPatient(Patient patient);
+    Room findByRoomNumber(Integer roomNumber);
 }

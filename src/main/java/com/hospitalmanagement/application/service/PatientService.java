@@ -28,6 +28,7 @@ public class PatientService {
         this.contactPatientRepository = contactPatientRepository;
     }
 
+    // Register new patient:
     @Transactional
     public ResponseEntity<Object> registerPatient(NewPatientDto newPatientDto) {
         Patient patient = new Patient();
@@ -46,6 +47,12 @@ public class PatientService {
         return new ResponseEntity<>("Patient created", HttpStatus.OK);
     }
 
+    // Check if the patient already exists (by national id):
+    public boolean checkPatientExistence(String nationalId){
+        return patientRepository.existsByNationalId(nationalId);
+    }
+
+    // Return all registered patients
     public ResponseEntity<List<PatientDto>> getAllPatients(){
         List<Patient> patients = patientRepository.findAll();
         List<PatientDto> patientDtoList = patients
