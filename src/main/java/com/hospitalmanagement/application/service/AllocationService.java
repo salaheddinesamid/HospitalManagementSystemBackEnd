@@ -34,7 +34,7 @@ public class AllocationService {
         this.billService = billService;
         this.roomService = roomService;
         this.patientService = patientService;
-    }
+    }git 
 
     public ResponseEntity<Object> createAllocation(
             AllocationDto allocationDto
