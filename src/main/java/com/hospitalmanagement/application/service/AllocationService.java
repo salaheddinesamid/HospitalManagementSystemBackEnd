@@ -2,10 +2,12 @@ package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.dto.AllocationDto;
 import com.hospitalmanagement.application.dto.NewPatientDto;
+import com.hospitalmanagement.application.exception.UserAlreadyExistsException;
 import com.hospitalmanagement.application.model.Allocation;
 import com.hospitalmanagement.application.model.Bill;
 import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.repository.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +36,7 @@ public class AllocationService {
         this.billService = billService;
         this.roomService = roomService;
         this.patientService = patientService;
-    }git 
+    }
 
     public ResponseEntity<Object> createAllocation(
             AllocationDto allocationDto
@@ -49,10 +51,13 @@ public class AllocationService {
                 newPatientDto.setFirstName(allocationDto.getFirstName());
                 newPatientDto.setLastName(allocationDto.getLastName());
                 newPatientDto.setNationalId(allocation.getNationalId());
-
+                return new ResponseEntity<>("" +
+                        "ALLOCATED SUCCESSFULLY", HttpStatus.OK);
             }else {
 
             }
-        } catch ()
+        } catch (UserAlreadyExistsException existsException){
+            throw new UserAlreadyExistsException();
+        }
     }
 }
