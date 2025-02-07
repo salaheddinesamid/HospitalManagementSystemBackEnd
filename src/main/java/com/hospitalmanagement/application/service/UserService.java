@@ -2,9 +2,11 @@ package com.hospitalmanagement.application.service;
 
 
 import com.hospitalmanagement.application.dto.LoginDTO;
+import com.hospitalmanagement.application.dto.ResetPasswordDto;
 import com.hospitalmanagement.application.dto.TokenDTO;
 import com.hospitalmanagement.application.dto.UserRegistrationDTO;
 import com.hospitalmanagement.application.exception.BadCredentialsException;
+import com.hospitalmanagement.application.exception.NationalIdNotValidException;
 import com.hospitalmanagement.application.exception.UserAlreadyExistsException;
 import com.hospitalmanagement.application.jwt.JwtUtil;
 import com.hospitalmanagement.application.model.User;
@@ -66,12 +68,19 @@ public class UserService {
     }
 
     public ResponseEntity<Object> resetPassword(
-            String email,
-            String newPassword
+            ResetPasswordDto resetPasswordDto
     ){
-        User user = userRepository.findByEmail(email);
-        user.setPassword(passwordEncoder.encode(newPassword));
-        return new ResponseEntity<>("Password reset successfully",HttpStatus.OK);
+        User user = userRepository.findByNationalId(resetPasswordDto.getNationalId());
+        try {
+            if (user.getPassword().equals(passwordEncoder.encode(resetPasswordDto.getOldPassword()))){
+                user.setPassword(passwordEncoder.encode(resetPasswordDto.getNewPassword()));
+                return new ResponseEntity<>("Password reset successfully",HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>("Invalid old password",HttpStatus.CONFLICT);
+            }
+        } catch (NationalIdNotValidException exception){
+            throw  new NationalIdNotValidException();
+        }
     }
 
     /*

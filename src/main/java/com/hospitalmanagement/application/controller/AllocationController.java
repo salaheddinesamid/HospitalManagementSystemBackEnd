@@ -19,8 +19,10 @@ public class AllocationController {
     }
 
 
+    /*
     @PostMapping("/new")
     public ResponseEntity<Object> createNewAllocation(@RequestBody AllocationDto allocationDto){
         return allocationService.createAllocation(allocationDto);
     }
+    */
 }

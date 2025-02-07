@@ -38,6 +38,7 @@ public class AllocationService {
         this.patientService = patientService;
     }
 
+    /*
     public ResponseEntity<Object> createAllocation(
             AllocationDto allocationDto
     ){
@@ -60,4 +61,6 @@ public class AllocationService {
             throw new UserAlreadyExistsException();
         }
     }
+    *
+     */
 }

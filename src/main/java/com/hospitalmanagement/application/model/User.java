@@ -25,6 +25,9 @@ public class User {
     @Column(name = "password",nullable = true)
     String password;
 
+    @Column(name = "national_id")
+    String nationalId;
+
     @Column(name = "role")
     String role;
 
