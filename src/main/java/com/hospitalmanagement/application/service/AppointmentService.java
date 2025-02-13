@@ -4,6 +4,8 @@ import com.hospitalmanagement.application.dto.AppointmentDto;
 import com.hospitalmanagement.application.exception.AppointmentException;
 import com.hospitalmanagement.application.model.*;
 import com.hospitalmanagement.application.repository.*;
+import org.apache.juli.logging.Log;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
@@ -11,9 +13,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class AppointmentService {
+
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(AppointmentService.class);
+    Logger logger = Logger.getLogger(AppointmentService.class.getName());
 
 
     private final AppointmentRepository appointmentRepository;
@@ -56,13 +62,6 @@ public class AppointmentService {
         return new ResponseEntity<>(appointmentRepository.findAll(), HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> cancelUserAppointment(
-            Integer appointmentId
-    ){
-        appointmentRepository.deleteById(appointmentId);
-        return new ResponseEntity<>("Appointment canceled ",HttpStatus.OK);
-    }
-
     @Async
     public ResponseEntity<Object> createAppointment(AppointmentDto appointmentDto){
         Appointment appointment = new Appointment();
@@ -84,7 +83,13 @@ public class AppointmentService {
 
     public ResponseEntity<Object> deleteAppointment(Integer appointmentId){
         try{
+            Bill bill = billRepository.findByAppointmentId(appointmentId);
+            logger.info("Deleting the appointment...");
             appointmentRepository.deleteById(appointmentId);
+            logger.fine("Appointment deleted successfully");
+            logger.info("Deleting the corresponding bill...");
+            billRepository.delete(bill);
+            logger.info("Bill deleted successfully");
             return new ResponseEntity<>("Appointment Deleted Successfully"
             ,HttpStatus.OK);
         }catch  (AppointmentException e){

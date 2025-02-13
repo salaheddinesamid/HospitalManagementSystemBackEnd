@@ -26,4 +26,8 @@ public class Bill {
 
     @Column(name = "date")
     Date date;
+
+
+    @Column(name = "appointment_id")
+    Integer appointmentId;
 }

@@ -31,6 +31,6 @@ public class AppointmentController {
 
     @DeleteMapping("delete/{appointmentId}")
     public ResponseEntity<Object> cancelAppointment(@PathVariable Integer appointmentId){
-        return appointmentService.cancelUserAppointment(appointmentId);
+        return appointmentService.deleteAppointment(appointmentId);
     }
 }

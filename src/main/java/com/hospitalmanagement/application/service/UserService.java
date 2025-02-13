@@ -50,6 +50,10 @@ public class UserService {
 
     }
 
+    public ResponseEntity<Object> confirmation(User user){
+        Double randomCode = Math.random();
+    }
+
     // User authentication;
     public ResponseEntity<Object> authentication(LoginDTO loginDTO){
        boolean userExists = userRepository.existsByEmail(loginDTO.getEmail());
