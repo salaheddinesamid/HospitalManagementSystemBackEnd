@@ -16,7 +16,10 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
+    // Encryption key:
     private final String secret = "385e7e7bf9074b975ccfb147a035696893be210c823250bf824cf61538176eda";
+
+    // Expiration time
     private Long jwtExpiration = 36000000L;
     public String extractUserName(String token){
         return extractClaim(token, Claims::getSubject);
@@ -35,13 +38,15 @@ public class JwtUtil {
     public Date extractExpiration(String token) { return
             extractClaim(token, Claims::getExpiration);
     }
-    public Boolean validateToken(String token, UserDetails userDetails) { final String email = extractUserName(token);
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String email = extractUserName(token);
         return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
-    public String getToken (HttpServletRequest httpServletRequest) { final String bearerToken = httpServletRequest. getHeader("Authorization");
+    public String getToken (HttpServletRequest httpServletRequest) {
+        final String bearerToken = httpServletRequest. getHeader("Authorization");
         if(StringUtils.hasText(bearerToken) && bearerToken. startsWith("Bearer "))
         {
             return bearerToken.substring(7,bearerToken.length()); } // The part after "Bearer "
