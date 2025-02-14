@@ -19,10 +19,4 @@ public class ReportService {
     public List<Report> getAllReports(){
         return reportRepository.findAll();
     }
-
-    /* To be completed...
-    public ResponseEntity<Object> newReport(){
-
-    }
-     */
 }

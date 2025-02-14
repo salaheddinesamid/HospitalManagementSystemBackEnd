@@ -14,8 +14,11 @@ import java.sql.Date;
 @Setter
 public class MedicalRecordDto {
 
+    // Patient personal Information:
     Patient patient;
+    // Doctor information
     Doctor doctor;
+    // Health information
     String diagnosis;
     String testResult;
     Date date;

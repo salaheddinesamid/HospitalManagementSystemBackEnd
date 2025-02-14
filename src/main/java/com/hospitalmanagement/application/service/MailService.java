@@ -13,7 +13,10 @@ public class MailService {
     private MailSender mailSender;
     private SimpleMailMessage simpleMailMessage;
 
+    /* To be implemented...
     public void sendMessage(Object message){
         SimpleMailMessage msg = new SimpleMailMessage(message);
     }
+
+     */
 }

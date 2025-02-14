@@ -96,4 +96,6 @@ public class AppointmentService {
             throw new AppointmentException();
         }
     }
+
+    public ResponseEntity<>
 }

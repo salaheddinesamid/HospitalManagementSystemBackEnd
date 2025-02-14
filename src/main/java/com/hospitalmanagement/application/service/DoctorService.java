@@ -4,9 +4,11 @@ import com.hospitalmanagement.application.dto.DoctorDto;
 import com.hospitalmanagement.application.dto.DoctorRegistrationDto;
 import com.hospitalmanagement.application.dto.MedicalRecordDto;
 import com.hospitalmanagement.application.exception.UserAlreadyExistsException;
+import com.hospitalmanagement.application.model.Appointment;
 import com.hospitalmanagement.application.model.Doctor;
 import com.hospitalmanagement.application.model.MedicalRecord;
 import com.hospitalmanagement.application.model.Patient;
+import com.hospitalmanagement.application.repository.AppointmentRepository;
 import com.hospitalmanagement.application.repository.DoctorRepository;
 import com.hospitalmanagement.application.repository.MedicalRecordRepository;
 import com.hospitalmanagement.application.repository.PatientRepository;
@@ -24,11 +26,13 @@ public class DoctorService {
     private final MedicalRecordRepository medicalRecordRepository;
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
+    private final AppointmentRepository appointmentRepository;
 
-    public DoctorService(MedicalRecordRepository medicalRecordRepository, PatientRepository patientRepository, DoctorRepository doctorRepository) {
+    public DoctorService(MedicalRecordRepository medicalRecordRepository, PatientRepository patientRepository, DoctorRepository doctorRepository,AppointmentRepository appointmentRepository) {
         this.medicalRecordRepository = medicalRecordRepository;
         this.patientRepository = patientRepository;
         this.doctorRepository = doctorRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
     public ResponseEntity<Object> createNewDoctor(DoctorRegistrationDto doctorRegistrationDto){
@@ -80,5 +84,13 @@ public class DoctorService {
                 ).toList();
 
         return new ResponseEntity<>(doctorDtoList,HttpStatus.OK);
+    }
+
+    public ResponseEntity<Object> completeAppointment(
+            Integer appointmentId
+    ){
+        Appointment appointment = appointmentRepository.findById(appointmentId).get();
+        appointment.setStatus("Completed");
+        createMedicalRecord()
     }
 }

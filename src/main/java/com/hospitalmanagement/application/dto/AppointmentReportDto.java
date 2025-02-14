@@ -1,2 +1,4 @@
-package com.hospitalmanagement.application.dto;public class AppointmentReportDto {
+package com.hospitalmanagement.application.dto;
+
+public class AppointmentReportDto {
 }
