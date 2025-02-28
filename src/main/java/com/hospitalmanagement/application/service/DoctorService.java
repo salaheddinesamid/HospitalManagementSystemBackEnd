@@ -86,11 +86,12 @@ public class DoctorService {
         return new ResponseEntity<>(doctorDtoList,HttpStatus.OK);
     }
 
+    /*
     public ResponseEntity<Object> completeAppointment(
             Integer appointmentId
     ){
         Appointment appointment = appointmentRepository.findById(appointmentId).get();
         appointment.setStatus("Completed");
-        createMedicalRecord()
-    }
+        createMedicalRecord();
+    }*/
 }

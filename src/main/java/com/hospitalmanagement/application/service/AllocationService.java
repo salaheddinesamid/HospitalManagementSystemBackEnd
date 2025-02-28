@@ -38,29 +38,29 @@ public class AllocationService {
         this.patientService = patientService;
     }
 
-    /*
+
     public ResponseEntity<Object> createAllocation(
             AllocationDto allocationDto
-    ){
+    ) {
         try {
-            Allocation allocation =  new Allocation();
+            Allocation allocation = new Allocation();
             boolean patientExists = patientService.checkPatientExistence(
                     allocationDto.getNationalId()
             );
-            if (patientExists){
+            if (patientExists) {
                 NewPatientDto newPatientDto = new NewPatientDto();
                 newPatientDto.setFirstName(allocationDto.getFirstName());
                 newPatientDto.setLastName(allocationDto.getLastName());
                 newPatientDto.setNationalId(allocation.getNationalId());
                 return new ResponseEntity<>("" +
                         "ALLOCATED SUCCESSFULLY", HttpStatus.OK);
-            }else {
+            } else {
 
             }
-        } catch (UserAlreadyExistsException existsException){
+        } catch (UserAlreadyExistsException existsException) {
             throw new UserAlreadyExistsException();
         }
+
+        return new ResponseEntity<>("Su",HttpStatus.OK);
     }
-    *
-     */
 }

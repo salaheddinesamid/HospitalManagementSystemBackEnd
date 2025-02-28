@@ -3,7 +3,6 @@ package com.hospitalmanagement.application.controller;
 import com.hospitalmanagement.application.dto.DoctorDto;
 import com.hospitalmanagement.application.dto.DoctorRegistrationDto;
 import com.hospitalmanagement.application.dto.MedicalRecordDto;
-import com.hospitalmanagement.application.model.Doctor;
 import com.hospitalmanagement.application.repository.DoctorRepository;
 import com.hospitalmanagement.application.service.DoctorService;
 import org.springframework.http.ResponseEntity;
@@ -34,10 +33,11 @@ public class DoctorController {
     }
 
 
+    /*
     @GetMapping("/generate_report/{userId}")
     public ResponseEntity<MedicalRecordDto> generateMedicalRecord(
             @PathVariable Integer userId
     ){
         return doctorService.createMedicalRecord(userId);
-    }
+    }*/
 }
