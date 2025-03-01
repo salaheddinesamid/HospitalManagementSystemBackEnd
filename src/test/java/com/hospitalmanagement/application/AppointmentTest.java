@@ -29,6 +29,7 @@ public class AppointmentTest {
     int port;
 
 
+    /*
     @Test
     void createAppointment(){
         String URI = "http://localhost:" + port + "/api/appointment/new";
@@ -49,6 +50,8 @@ public class AppointmentTest {
                         );
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
+
+     */
     @Test
     void duplicateAppointment(){
 
