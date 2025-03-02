@@ -16,11 +16,7 @@ public class Appointment {
     Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user")
-    User user;
-
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
+    @JoinColumn(name = "diagnosed_by", nullable = true)
     Doctor doctor;
 
     @Column(name = "disease")
@@ -28,9 +24,6 @@ public class Appointment {
 
     @Column(name = "date")
     Date date;
-
-    @Column(name = "time")
-    Time time;
 
     @Column(name = "status")
     String status;

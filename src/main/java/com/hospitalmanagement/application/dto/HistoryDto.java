@@ -1,6 +1,5 @@
 package com.hospitalmanagement.application.dto;
 
-import com.hospitalmanagement.application.model.User;
 import lombok.Data;
 
 import java.util.Date;

@@ -2,7 +2,7 @@ package com.hospitalmanagement.application.model;
 
 public enum RoleName {
 
-    USER,
+    PATIENT,
     ADMIN,
     DOCTOR,
     NURSE

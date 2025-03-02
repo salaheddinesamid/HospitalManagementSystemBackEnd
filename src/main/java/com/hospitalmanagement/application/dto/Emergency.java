@@ -1,6 +1,5 @@
 package com.hospitalmanagement.application.dto;
 
-import com.hospitalmanagement.application.model.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

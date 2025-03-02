@@ -3,11 +3,9 @@ package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.model.Bill;
 import com.hospitalmanagement.application.model.Report;
-import com.hospitalmanagement.application.model.User;
 import com.hospitalmanagement.application.repository.BillRepository;
 import com.hospitalmanagement.application.repository.ReportRepository;
 import com.hospitalmanagement.application.repository.UserRepository;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

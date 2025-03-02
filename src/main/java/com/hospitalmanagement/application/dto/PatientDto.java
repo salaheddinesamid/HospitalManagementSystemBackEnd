@@ -5,9 +5,11 @@ import lombok.Data;
 
 @Data
 public class PatientDto {
-    String fullName;
+    String firstName;
+    String lastName;
     String nationalId;
     String address;
     String phone;
     String email;
+    String password;
 }

@@ -1,13 +1,11 @@
 package com.hospitalmanagement.application.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -32,12 +30,25 @@ public class Nurse implements UserDetails {
     @Column(name = "date_of_birth")
     Date birth;
 
+    @Column(name = "email")
+    String email;
+
     @Column(name = "national_id")
     String nationalId;
 
+    @Column(name = "badge_number", nullable = true)
+    Integer badgeNumber;
+
+    @Column(name = "gender")
+    String gender;
+
+    @ManyToOne
+    @JoinColumn(name = "role_role_id")
+    Role role;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(new SimpleGrantedAuthority(role.getRoleName().toString()));
     }
 
     @Override

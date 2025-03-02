@@ -1,6 +1,5 @@
 package com.hospitalmanagement.application.configuration;
 
-
 import com.hospitalmanagement.application.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -9,8 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -31,13 +29,19 @@ public class SecurityConfiguration{
                 .csrf()
                 .disable()
                 .authorizeHttpRequests(auth->auth.requestMatchers("api/test/**",
-                        "/api/admin/**",
-                        "/api/user/**"
-                        ,"api/doctor/**",
-                        "/api/bill/**",
-                        "api/patient/**"
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                        "/api/admin/authenticate"
+
                         ).permitAll()
-                        .requestMatchers("/api/appointment/**").hasAuthority("ADMIN")
+                        .requestMatchers("/api/appointment/**",
+                                "/api/admin/new",
+                                "/api/nurse/**",
+                                "/api/user/**"
+                                ,"api/doctor/**",
+                                "/api/bill/**",
+                                "api/patient/**"
+                                ).hasAuthority("ADMIN")
                 );
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

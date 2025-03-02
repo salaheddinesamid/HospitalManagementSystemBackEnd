@@ -1,11 +1,8 @@
 package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.dto.AllocationDto;
-import com.hospitalmanagement.application.dto.NewPatientDto;
 import com.hospitalmanagement.application.exception.UserAlreadyExistsException;
 import com.hospitalmanagement.application.model.Allocation;
-import com.hospitalmanagement.application.model.Bill;
-import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.repository.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

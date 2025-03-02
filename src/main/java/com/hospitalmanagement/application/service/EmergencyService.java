@@ -2,7 +2,6 @@ package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.dto.Emergency;
 import com.hospitalmanagement.application.dto.EmergencyDto;
-import com.hospitalmanagement.application.model.User;
 import com.hospitalmanagement.application.repository.EmergencyRepository;
 import com.hospitalmanagement.application.repository.UserRepository;
 import org.springframework.http.HttpStatus;

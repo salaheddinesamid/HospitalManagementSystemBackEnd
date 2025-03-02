@@ -9,7 +9,6 @@ import com.hospitalmanagement.application.exception.BadCredentialsException;
 import com.hospitalmanagement.application.exception.NationalIdNotValidException;
 import com.hospitalmanagement.application.exception.UserAlreadyExistsException;
 import com.hospitalmanagement.application.jwt.JwtUtil;
-import com.hospitalmanagement.application.model.User;
 import com.hospitalmanagement.application.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

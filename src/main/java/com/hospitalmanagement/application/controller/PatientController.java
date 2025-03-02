@@ -1,6 +1,6 @@
 package com.hospitalmanagement.application.controller;
 
-import com.hospitalmanagement.application.dto.NewPatientDto;
+import com.hospitalmanagement.application.dto.LoginDTO;
 import com.hospitalmanagement.application.dto.PatientDto;
 import com.hospitalmanagement.application.service.PatientService;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +23,13 @@ public class PatientController {
         return patientService.getAllPatients();
     }
 
-    @PostMapping("/new")
-    public ResponseEntity<Object> newPatient(@RequestBody NewPatientDto newPatientDto){
+    @PostMapping("/register")
+    public ResponseEntity<Object> newPatient(@RequestBody PatientDto newPatientDto){
         return patientService.registerPatient(newPatientDto);
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticate(LoginDTO loginDTO){
+        return patientService
     }
 }
