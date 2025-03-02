@@ -4,7 +4,7 @@ package com.hospitalmanagement.application.dto;
 import lombok.Data;
 
 @Data
-public class PatientDto {
+public class NewPatientDto {
     String firstName;
     String lastName;
     String nationalId;
