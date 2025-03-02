@@ -56,6 +56,10 @@ public class Patient  implements UserDetails {
 
     }
 
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.getRoleName().toString()));

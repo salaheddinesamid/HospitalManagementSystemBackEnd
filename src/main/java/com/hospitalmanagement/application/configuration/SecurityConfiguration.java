@@ -30,18 +30,21 @@ public class SecurityConfiguration{
                 .disable()
                 .authorizeHttpRequests(auth->auth.requestMatchers("api/test/**",
                                 "/swagger-ui/**",
+                                "/api/appointment/**",
+                                "/api/bill/**",
+                                "api/room/**",
+                                "api/patient/**",
                                 "/v3/api-docs/**",
-                        "/api/admin/authenticate"
-
-                        ).permitAll()
-                        .requestMatchers("/api/appointment/**",
+                        "/api/admin/authenticate",
                                 "/api/admin/new",
                                 "/api/nurse/**",
                                 "/api/user/**"
                                 ,"api/doctor/**",
                                 "/api/bill/**",
                                 "api/patient/**"
-                                ).hasAuthority("ADMIN")
+
+                        ).permitAll()
+
                 );
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

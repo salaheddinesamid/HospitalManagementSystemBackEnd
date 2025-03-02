@@ -28,6 +28,6 @@ public class Bill {
     Date date;
 
 
-    @Column(name = "appointment_id")
-    Integer appointmentId;
+   @OneToOne
+    Appointment appointment;
 }

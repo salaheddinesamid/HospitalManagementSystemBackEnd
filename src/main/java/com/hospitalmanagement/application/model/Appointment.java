@@ -25,6 +25,12 @@ public class Appointment {
     @Column(name = "date")
     Date date;
 
+    @Column(name = "location")
+    String location;
+
     @Column(name = "status")
     String status;
+
+    @ManyToOne
+    Patient patient;
 }

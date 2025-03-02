@@ -1,13 +1,12 @@
 package com.hospitalmanagement.application.service;
 
 import com.hospitalmanagement.application.dto.LoginDTO;
+import com.hospitalmanagement.application.dto.PatientDetailsDto;
 import com.hospitalmanagement.application.dto.PatientDto;
 import com.hospitalmanagement.application.dto.TokenDTO;
 import com.hospitalmanagement.application.exception.PatientNotFoundException;
 import com.hospitalmanagement.application.jwt.JwtUtil;
 import com.hospitalmanagement.application.model.Patient;
-import com.hospitalmanagement.application.repository.ContactPatientRepository;
-import com.hospitalmanagement.application.repository.ContactRepository;
 import com.hospitalmanagement.application.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -90,19 +89,19 @@ public class PatientService {
     }
 
     // Return all registered patients
-    public ResponseEntity<List<PatientDto>> getAllPatients(){
+    public ResponseEntity<List<PatientDetailsDto>> getAllPatients(){
         List<Patient> patients = patientRepository.findAll();
-        List<PatientDto> patientDtoList = patients
-                .stream().map(patient -> {
-                    PatientDto patientDto = new PatientDto();
-                    patientDto.setFirstName(patient.getFirstName());
-                    patientDto.setLastName(patient.getLastName());
-                    //patientDto.setFullName(patient.getFirstName() + " " + patient.getLastName());
-                    patientDto.setAddress(patient.getAddress());
-                    patientDto.setEmail(patient.getEmail());
-                    patientDto.setNationalId(patient.getNationalId());
-                    return patientDto;
-                }).toList();
-        return new ResponseEntity<>(patientDtoList,HttpStatus.OK);
+        List<PatientDetailsDto> patientsDetailsDto =
+                patients.
+                        stream()
+                        .map(patient -> {
+                            PatientDetailsDto patientDetailsDto = new PatientDetailsDto();
+                            patientDetailsDto.setPatientId(patient.getId());
+                            patientDetailsDto.setFullName(patient.getFirstName() + " " + patient.getLastName());
+                            patientDetailsDto.setAddress(patient.getAddress());
+                            patientDetailsDto.setEmail(patient.getEmail());
+                            return patientDetailsDto;
+                        }).toList();
+        return new ResponseEntity<>(patientsDetailsDto,HttpStatus.OK);
     }
 }

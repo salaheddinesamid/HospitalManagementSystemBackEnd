@@ -1,8 +1,10 @@
 package com.hospitalmanagement.application.controller;
 
 import com.hospitalmanagement.application.dto.LoginDTO;
+import com.hospitalmanagement.application.dto.PatientDetailsDto;
 import com.hospitalmanagement.application.dto.PatientDto;
 import com.hospitalmanagement.application.service.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +16,13 @@ public class PatientController {
 
     private final PatientService patientService;
 
+    @Autowired
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
 
     @GetMapping("/get_all")
-    public ResponseEntity<List<PatientDto>> allPatients(){
+    public ResponseEntity<List<PatientDetailsDto>> allPatients(){
         return patientService.getAllPatients();
     }
 
@@ -30,6 +33,6 @@ public class PatientController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(LoginDTO loginDTO){
-        return patientService
+        return patientService.authentication(loginDTO);
     }
 }

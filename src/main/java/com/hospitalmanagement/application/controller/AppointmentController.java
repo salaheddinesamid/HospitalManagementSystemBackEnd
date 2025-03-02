@@ -1,6 +1,7 @@
 package com.hospitalmanagement.application.controller;
 
 
+import com.hospitalmanagement.application.dto.AppointmentDetailsDto;
 import com.hospitalmanagement.application.dto.AppointmentDto;
 import com.hospitalmanagement.application.model.Appointment;
 import com.hospitalmanagement.application.service.AppointmentService;
@@ -20,7 +21,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/get_all")
-    public ResponseEntity<List<Appointment>> getAllAppointments(){
+    public ResponseEntity<List<AppointmentDetailsDto>> getAllAppointments(){
         return appointmentService.getAllAppointment();
     }
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AllocationService {
 
+    /*
     private final AllocationRepository allocationRepository;
     private final HistoryRepository historyRepository;
     private final UserRepository userRepository;
@@ -60,4 +61,6 @@ public class AllocationService {
 
         return new ResponseEntity<>("Su",HttpStatus.OK);
     }
+
+     */
 }

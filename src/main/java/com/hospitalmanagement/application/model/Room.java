@@ -32,11 +32,15 @@ public class Room {
     Integer pricePerDay;
 
     @OneToOne
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patient_id", nullable = true)
     Patient patient;
 
     public Room(Integer roomNumber){
         this.roomNumber = roomNumber;
         this.status = status;
+    }
+
+    public Room() {
+
     }
 }

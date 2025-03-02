@@ -1,16 +1,15 @@
 package com.hospitalmanagement.application.service;
 
+import com.hospitalmanagement.application.dto.AppointmentDetailsDto;
 import com.hospitalmanagement.application.dto.AppointmentDto;
 import com.hospitalmanagement.application.dto.PatientDto;
 import com.hospitalmanagement.application.exception.AppointmentException;
 import com.hospitalmanagement.application.model.*;
 import com.hospitalmanagement.application.repository.*;
-import org.apache.juli.logging.Log;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,14 +30,15 @@ public class AppointmentService {
     private final DiseaseRepository diseaseRepository;
     private final BillRepository billRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
     private  DoctorRepository doctorRepository;
 
     @Autowired
     public AppointmentService(AppointmentRepository appointmentRepository,
                               PatientRepository patientRepository,
                               DiseaseRepository diseaseRepository,
-                              BillService billService,
-                              BillRepository billRepository, PasswordEncoder passwordEncoder,
+                              //BillService billService,
+                              BillRepository billRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository,
                               DoctorRepository doctorRepository) {
         this.appointmentRepository = appointmentRepository;
         this.patientRepository = patientRepository;
@@ -46,6 +46,7 @@ public class AppointmentService {
         //this.billService = billService;
         this.billRepository = billRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
         this.doctorRepository = doctorRepository;
     }
     /* TO BE REVIEWED
@@ -66,8 +67,24 @@ public class AppointmentService {
         return d.getPrice();
     }
 
-    public ResponseEntity<List<Appointment>> getAllAppointment(){
-        return new ResponseEntity<>(appointmentRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<AppointmentDetailsDto>> getAllAppointment(){
+        List<Appointment> appointments  = appointmentRepository.findAll();
+
+        List<AppointmentDetailsDto> appointmentDetailsDtoList =
+                appointments.stream()
+                        .map(appointment -> {
+                            AppointmentDetailsDto appointmentDetailsDto = new AppointmentDetailsDto();
+                            appointmentDetailsDto.setAppointmentId(appointment.getId());
+                            appointmentDetailsDto.setPatient(appointment.getPatient());
+                            appointmentDetailsDto.setDate(appointment.getDate());
+                            appointmentDetailsDto.setDisease(appointment.getDisease());
+                            appointmentDetailsDto.setLocation(appointment.getLocation());
+                            appointmentDetailsDto.setStatus(appointment.getStatus());
+                            appointmentDetailsDto.setLocation(appointment.getLocation());
+                            return appointmentDetailsDto;
+                        }).toList();
+
+        return new ResponseEntity<>(appointmentDetailsDtoList,HttpStatus.OK);
     }
 
     @Transactional
@@ -80,11 +97,14 @@ public class AppointmentService {
 
             logger.fine("Creating new patient");
             Patient patient = new Patient();
+            Role role = roleRepository.findByRoleName(RoleName.USER);
             PatientDto patientDto = appointmentDto.getPatientDto();
             patient.setNationalId(patientDto.getNationalId());
             patient.setFirstName(patientDto.getFirstName());
             patient.setLastName(patientDto.getLastName());
             patient.setEmail(patientDto.getEmail());
+            patient.setAddress(patientDto.getAddress());
+            patient.setRole(role);
             // Generate initial password for on-site and first time patients, so they can access the application
             String password = patient.getLastName() + patient.getNationalId().hashCode();
             patient.setPassword(passwordEncoder.encode(password));
@@ -97,12 +117,15 @@ public class AppointmentService {
         Appointment appointment = new Appointment();
         Bill bill = new Bill();
         appointment.setDate(appointmentDto.getSelectedDate());
+        appointment.setPatient(patient);
         appointment.setStatus("IN REVIEW");
         appointment.setDisease(appointmentDto.getDisease());
+        appointment.setLocation(appointmentDto.getLocation());
 
         bill.setAmount(appointmentDto.getPrice());
         bill.setStatus("UNPAID");
         bill.setPatient(patient);
+        bill.setAppointment(appointment);
         bill.setDate(new Date(System.currentTimeMillis()));
 
 
