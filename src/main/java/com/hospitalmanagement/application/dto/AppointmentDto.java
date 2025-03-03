@@ -12,6 +12,6 @@ public class AppointmentDto {
     String disease;
     String location;
     Date selectedDate;
-    Integer price;
+    Integer totalPrice;
 
 }

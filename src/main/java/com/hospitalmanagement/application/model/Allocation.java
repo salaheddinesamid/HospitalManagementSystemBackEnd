@@ -13,12 +13,14 @@ public class Allocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer allocationId;
 
-    @Column(name = "room_number")
-    Integer roomNumber;
 
-    @Column(name = "patient_name")
-    String name;
+    @ManyToOne
+    Patient patient;
 
-    @Column(name = "nationalId")
-    String nationalId;
+    @OneToOne
+    Room room;
+
+    @Column(name = "status")
+    String status;
+
 }

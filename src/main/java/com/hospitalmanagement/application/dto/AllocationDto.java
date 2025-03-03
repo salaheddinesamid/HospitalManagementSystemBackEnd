@@ -6,9 +6,6 @@ import lombok.Data;
 @Data
 public class AllocationDto {
 
-    Integer receptionistId;
-    Integer roomNumber;
-    String firstName;
-    String lastName;
-    String nationalId;
+    PatientDto patientDto;
+    Integer roomId;
 }

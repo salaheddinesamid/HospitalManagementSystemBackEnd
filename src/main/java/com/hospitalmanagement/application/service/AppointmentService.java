@@ -8,6 +8,7 @@ import com.hospitalmanagement.application.model.*;
 import com.hospitalmanagement.application.repository.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -88,6 +89,7 @@ public class AppointmentService {
     }
 
     @Transactional
+    @Cacheable(value = "appointments")
     public ResponseEntity<?> createAppointment(AppointmentDto appointmentDto){
         String patientNationalId = appointmentDto.getPatientDto().getNationalId();
         logger  .info("Checking user existence, national id: " + patientNationalId);
@@ -122,7 +124,7 @@ public class AppointmentService {
         appointment.setDisease(appointmentDto.getDisease());
         appointment.setLocation(appointmentDto.getLocation());
 
-        bill.setAmount(appointmentDto.getPrice());
+        bill.setAmount(appointmentDto.getTotalPrice());
         bill.setStatus("UNPAID");
         bill.setPatient(patient);
         bill.setAppointment(appointment);

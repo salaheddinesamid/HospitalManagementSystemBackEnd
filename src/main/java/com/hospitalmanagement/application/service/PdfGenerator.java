@@ -1,2 +1,10 @@
-package com.hospitalmanagement.application.service;public class PdfGenerator {
+package com.hospitalmanagement.application.service;
+
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class PdfGenerator {
+
+
 }
