@@ -2,6 +2,7 @@ package com.hospitalmanagement.application.service;
 
 
 import com.hospitalmanagement.application.dto.AdminRegistrationDto;
+import com.hospitalmanagement.application.dto.AuthenticationDetails;
 import com.hospitalmanagement.application.dto.LoginDTO;
 import com.hospitalmanagement.application.dto.TokenDTO;
 import com.hospitalmanagement.application.exception.AdminAlreadyExistsException;
@@ -11,6 +12,7 @@ import com.hospitalmanagement.application.model.Role;
 import com.hospitalmanagement.application.model.RoleName;
 import com.hospitalmanagement.application.repository.AdminRepository;
 import com.hospitalmanagement.application.repository.RoleRepository;
+import org.antlr.v4.runtime.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -101,8 +103,13 @@ public class AdminService {
 
             // Generate JWT token
             String token = jwtUtil.generateToken(admin.getEmail(), admin.getRole().getRoleName().toString());
-
-            return ResponseEntity.ok(new TokenDTO(token));
+            AuthenticationDetails authenticationDetails = new AuthenticationDetails();
+            TokenDTO tokenDTO = new TokenDTO(token);
+            authenticationDetails.setTokenDTO(tokenDTO);
+            authenticationDetails.setFirstName(admin.getFirstName());
+            authenticationDetails.setLastName(admin.getLastName());
+            authenticationDetails.setEmail(admin.getEmail());
+            return ResponseEntity.ok(authenticationDetails);
 
         } catch (AuthenticationException e) {
             return new ResponseEntity<>("Authentication failed", HttpStatus.UNAUTHORIZED);

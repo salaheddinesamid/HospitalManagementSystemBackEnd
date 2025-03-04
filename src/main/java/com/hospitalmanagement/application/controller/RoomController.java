@@ -1,6 +1,7 @@
 package com.hospitalmanagement.application.controller;
 
 
+import com.hospitalmanagement.application.dto.RoomDetailsDto;
 import com.hospitalmanagement.application.model.Room;
 import com.hospitalmanagement.application.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class RoomController {
     }
 
     @GetMapping("/get_all")
-    public List<Room> allRooms(){
+    public ResponseEntity<List<RoomDetailsDto   >> allRooms(){
         return roomService.getAllRooms();
     }
 }

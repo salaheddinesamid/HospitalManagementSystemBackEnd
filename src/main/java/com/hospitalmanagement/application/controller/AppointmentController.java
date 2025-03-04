@@ -3,7 +3,6 @@ package com.hospitalmanagement.application.controller;
 
 import com.hospitalmanagement.application.dto.AppointmentDetailsDto;
 import com.hospitalmanagement.application.dto.AppointmentDto;
-import com.hospitalmanagement.application.model.Appointment;
 import com.hospitalmanagement.application.service.AppointmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

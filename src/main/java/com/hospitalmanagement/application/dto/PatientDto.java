@@ -12,4 +12,10 @@ public class PatientDto {
     String phone;
     String email;
     String password;
+
+    public PatientDto(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
 }

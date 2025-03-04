@@ -90,8 +90,8 @@ public class AppointmentService {
 
     @Transactional
     @Cacheable(value = "appointments")
-    public ResponseEntity<?> createAppointment(AppointmentDto appointmentDto){
-        String patientNationalId = appointmentDto.getPatientDto().getNationalId();
+        public ResponseEntity<?> createAppointment(AppointmentDto appointmentDto){
+            String patientNationalId = appointmentDto.getPatientDto().getNationalId();
         logger  .info("Checking user existence, national id: " + patientNationalId);
         if (!patientRepository.existsByNationalId(
                 patientNationalId
