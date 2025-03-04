@@ -9,6 +9,7 @@ import com.hospitalmanagement.application.jwt.JwtUtil;
 import com.hospitalmanagement.application.model.Patient;
 import com.hospitalmanagement.application.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -89,6 +90,7 @@ public class PatientService {
     }
 
     // Return all registered patients
+    @Cacheable(value = "patients")
     public ResponseEntity<List<PatientDetailsDto>> getAllPatients(){
         List<Patient> patients = patientRepository.findAll();
         List<PatientDetailsDto> patientsDetailsDto =

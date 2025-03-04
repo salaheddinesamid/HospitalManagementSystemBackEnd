@@ -4,6 +4,7 @@ import com.hospitalmanagement.application.dto.NurseDto;
 import com.hospitalmanagement.application.model.Nurse;
 import com.hospitalmanagement.application.repository.NurseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class NurseService {
     }
 
 
+    @Cacheable(value = "nurses")
     public List<NurseDto> allNurse(){
         List<Nurse> nurses = nurseRepository.findAll();
 

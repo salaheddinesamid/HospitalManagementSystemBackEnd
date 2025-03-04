@@ -8,6 +8,7 @@ import com.hospitalmanagement.application.model.*;
 import com.hospitalmanagement.application.repository.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +69,8 @@ public class AppointmentService {
         return d.getPrice();
     }
 
+
+    @Cacheable(value = "appointments")
     public ResponseEntity<List<AppointmentDetailsDto>> getAllAppointment(){
         List<Appointment> appointments  = appointmentRepository.findAll();
 
@@ -89,7 +92,7 @@ public class AppointmentService {
     }
 
     @Transactional
-    @Cacheable(value = "appointments")
+    @CachePut(value = "appointments")
         public ResponseEntity<?> createAppointment(AppointmentDto appointmentDto){
             String patientNationalId = appointmentDto.getPatientDto().getNationalId();
         logger  .info("Checking user existence, national id: " + patientNationalId);

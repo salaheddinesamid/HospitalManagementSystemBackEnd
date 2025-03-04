@@ -12,6 +12,7 @@ import com.hospitalmanagement.application.repository.AppointmentRepository;
 import com.hospitalmanagement.application.repository.DoctorRepository;
 import com.hospitalmanagement.application.repository.MedicalRecordRepository;
 import com.hospitalmanagement.application.repository.PatientRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,9 @@ public class DoctorService {
         return new ResponseEntity<>("Medical record has been created", HttpStatus.OK);
     }
 
+
+
+    @Cacheable(value = "doctors")
     public ResponseEntity<List<DoctorDto>> getAllDoctors(){
         List<Doctor> doctors = doctorRepository.findAll();
         List<DoctorDto> doctorDtoList = doctors
@@ -86,12 +90,17 @@ public class DoctorService {
         return new ResponseEntity<>(doctorDtoList,HttpStatus.OK);
     }
 
-    /*
+
     public ResponseEntity<Object> completeAppointment(
-            Integer appointmentId
+            Integer appointmentId,
+            Integer doctorId
     ){
         Appointment appointment = appointmentRepository.findById(appointmentId).get();
+        Doctor doctor = doctorRepository.findById(doctorId).get();
         appointment.setStatus("Completed");
-        createMedicalRecord();
-    }*/
+        appointment.setDoctor(doctor);
+        appointmentRepository.save(appointment);
+
+        return new ResponseEntity<>("The appointment has been completed",HttpStatus.OK);
+    }
 }
