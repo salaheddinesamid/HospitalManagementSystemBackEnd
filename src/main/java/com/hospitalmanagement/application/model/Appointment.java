@@ -25,6 +25,9 @@ public class Appointment {
     @Column(name = "date")
     Date date;
 
+    @Column(name = "time")
+    Time time;
+
     @Column(name = "location")
     String location;
 

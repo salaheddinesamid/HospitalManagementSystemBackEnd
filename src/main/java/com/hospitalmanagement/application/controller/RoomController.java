@@ -2,7 +2,6 @@ package com.hospitalmanagement.application.controller;
 
 
 import com.hospitalmanagement.application.dto.RoomDetailsDto;
-import com.hospitalmanagement.application.model.Room;
 import com.hospitalmanagement.application.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,4 +28,5 @@ public class RoomController {
     public ResponseEntity<List<RoomDetailsDto   >> allRooms(){
         return roomService.getAllRooms();
     }
+
 }

@@ -30,6 +30,7 @@ public class SecurityConfiguration{
                 .disable()
                 .authorizeHttpRequests(auth->auth.requestMatchers("api/test/**",
                                 "/swagger-ui/**",
+                                "api-docs/**",
                                 "/api/bill/**",
                                 "/api/appointment/**",
                                 "api/room/**",
