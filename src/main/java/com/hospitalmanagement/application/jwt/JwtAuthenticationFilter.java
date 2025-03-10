@@ -1,5 +1,4 @@
 package com.hospitalmanagement.application.jwt;
-
 import com.hospitalmanagement.application.service.AdminDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,8 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
+
 
 
 @Slf4j
@@ -25,6 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private  final JwtUtil jwtUtilities ;
     private final AdminDetailsService adminDetailsService ;
 
+
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         System.out.println(request.getLocalAddr());
@@ -33,14 +33,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (token!=null && jwtUtilities.validateToken(token)) {
             String email = jwtUtilities.extractUserName(token);
             UserDetails userDetails = adminDetailsService.loadUserByUsername(email);
-            if (userDetails != null) { UsernamePasswordAuthenticationToken authentication =
+            if (userDetails != null) {
+                UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(userDetails.
                             getUsername() ,null , userDetails.getAuthorities());
                 log.info("authenticated user with email :{}", email);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
-
         filterChain.doFilter(request,response);
     }
 }
