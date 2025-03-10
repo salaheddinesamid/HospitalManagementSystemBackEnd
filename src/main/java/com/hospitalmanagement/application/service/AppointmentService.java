@@ -34,7 +34,7 @@ public class AppointmentService {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private  DoctorRepository doctorRepository;
-    private final PdfGenerator pdfGenerator;
+    //private final PdfGenerator pdfGenerator;
 
     @Autowired
     public AppointmentService(AppointmentRepository appointmentRepository,
@@ -42,7 +42,7 @@ public class AppointmentService {
                               DiseaseRepository diseaseRepository,
                               //BillService billService,
                               BillRepository billRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository,
-                              DoctorRepository doctorRepository, PdfGenerator pdfGenerator) {
+                              DoctorRepository doctorRepository) {
         this.appointmentRepository = appointmentRepository;
         this.patientRepository = patientRepository;
         this.diseaseRepository = diseaseRepository;
@@ -51,7 +51,7 @@ public class AppointmentService {
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.doctorRepository = doctorRepository;
-        this.pdfGenerator = pdfGenerator;
+        //this.pdfGenerator = pdfGenerator;
     }
     /* TO BE REVIEWED
     // Permanent and does not use the app
@@ -136,7 +136,7 @@ public class AppointmentService {
         bill.setAppointment(appointment);
         bill.setDate(new Date(System.currentTimeMillis()));
 
-        pdfGenerator.generateAppointmentDocument(appointment);
+        //pdfGenerator.generateAppointmentDocument(appointment);
 
 
         appointmentRepository.save(appointment);

@@ -12,7 +12,6 @@ import com.hospitalmanagement.application.model.Role;
 import com.hospitalmanagement.application.model.RoleName;
 import com.hospitalmanagement.application.repository.AdminRepository;
 import com.hospitalmanagement.application.repository.RoleRepository;
-import org.antlr.v4.runtime.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,11 +28,11 @@ import java.util.logging.Logger;
 
 @Service
 public class AdminService {
-    private AdminRepository adminRepository;
-    private PasswordEncoder passwordEncoder;
-    private AuthenticationManager authenticationManager;
-    private JwtUtil jwtUtil;
-    private RoleRepository roleRepository;
+    private final AdminRepository adminRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
+    private final RoleRepository roleRepository;
     Logger logger = Logger.getLogger(AdminService.class.getName());
 
     @Autowired

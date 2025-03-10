@@ -16,12 +16,15 @@ public class JwtUtil {
     // Encryption key:
     private final String secret = "385e7e7bf9074b975ccfb147a035696893be210c823250bf824cf61538176eda";
 
-    // Expiration time
+    // Expiration time:
     private Long jwtExpiration = 36000000L;
+
+    // Extract the username
     public String extractUserName(String token){
         return extractClaim(token, Claims::getSubject);
     }
 
+    // Extract the claims
     private <T> T extractClaim(String token, Function<Claims,T> claimsTFunction) {
         final Claims claims = extractAllClaims(token);
         return claimsTFunction.apply(claims);
@@ -32,6 +35,8 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
+    // Extract the expiration date of the token
     public Date extractExpiration(String token) { return
             extractClaim(token, Claims::getExpiration);
     }
@@ -39,16 +44,22 @@ public class JwtUtil {
         final String email = extractUserName(token);
         return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+
+    // Checks if the token is expired.
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
+
+    // Get the token from HTTP request.
     public String getToken (HttpServletRequest httpServletRequest) {
         final String bearerToken = httpServletRequest. getHeader("Authorization");
         if(StringUtils.hasText(bearerToken) && bearerToken. startsWith("Bearer "))
         {
-            return bearerToken.substring(7,bearerToken.length()); } // The part after "Bearer "
+            return bearerToken.substring(7); } // The part after "Bearer "
         return null;
     }
+
+    // Validate the token
     public boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
@@ -67,6 +78,8 @@ public class JwtUtil {
         }
         return false;
     }
+
+    // Generate token for authenticated users
     public String generateToken(String email, String role){
         return Jwts.builder()
                 .setSubject(email)

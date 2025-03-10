@@ -18,4 +18,8 @@ public class PatientDto {
         this.lastName = lastName;
     }
 
+    public PatientDto(){
+
+    }
+
 }
