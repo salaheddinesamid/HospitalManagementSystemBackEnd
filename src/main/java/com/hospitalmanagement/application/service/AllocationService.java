@@ -39,7 +39,6 @@ public class AllocationService {
         this.patientService = patientService;
     }
 
-
     @Cacheable(value = "allocation")
     @Transactional
     public CompletableFuture<ResponseEntity<?>> allocate(AllocationDto allocationDto){
